@@ -1,0 +1,6 @@
+MATH 271 — Week 2
+Lecture 2 topic: Predicates, universal quantifiers, and existential quantifiers.
+Learning outcome: Translate English statements into quantified symbolic form and write logically equivalent negations.
+Practice Sheet A: Complete Questions 1–4. For each statement, write its negation and name the quantifier rule used.
+Assessment note: Show every logical step and compare the final form with the equivalence rules in Lecture 2.
+Quiz date: August 28, 2026.

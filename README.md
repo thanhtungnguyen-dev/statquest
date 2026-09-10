@@ -11,7 +11,72 @@ StatQuest transforms traditional studying into a structured learning experience 
 
 ---
 
-## Overview
+# Demo
+
+## Learning Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+The dashboard provides a central learning workspace containing:
+
+- active learning goals
+- recommended missions
+- progress tracking
+- focus session access
+- learning statistics
+
+---
+
+## Personalized Mission Generation
+
+![Mission Generation](docs/screenshots/mission-generation.png)
+
+StatQuest converts learning goals into structured learning missions.
+
+Each mission includes:
+
+- recommended learning tasks
+- estimated completion time
+- difficulty level
+- XP rewards
+- reasoning behind recommendations
+
+The goal is to answer:
+
+> "What should I study next, and why?"
+
+---
+
+## Mission Execution
+
+![Mission Details](docs/screenshots/mission-details.png)
+
+Each mission breaks learning into actionable steps:
+
+- define the main idea
+- inspect concrete examples
+- complete guided practice
+- verify understanding independently
+
+This encourages active learning instead of passive content consumption.
+
+---
+
+## Focus Mode
+
+![Focus Mode](docs/screenshots/focus-mode.png)
+
+Focus Mode provides a distraction-free learning environment with:
+
+- active learning task
+- timer-based sessions
+- progress tracking
+- reward system
+- focus companion
+
+---
+
+# Overview
 
 Many students struggle with statistics not because of mathematical difficulty, but because they lack:
 
@@ -28,9 +93,19 @@ StatQuest addresses this by creating a personalized learning system that adapts 
 - review needs
 - completion evidence
 
-The platform helps learners answer:
+The platform helps learners build a consistent loop:
 
-> "What should I study next, and why?"
+```
+Goal
+ |
+Mission Generation
+ |
+Focused Learning
+ |
+Progress Tracking
+ |
+Improved Recommendations
+```
 
 ---
 
@@ -38,7 +113,7 @@ The platform helps learners answer:
 
 ## Personalized Learning Missions
 
-StatQuest generates structured learning missions based on:
+StatQuest generates structured missions based on:
 
 - current goals
 - topic mastery
@@ -218,7 +293,7 @@ The project contains automated tests covering:
 - review scheduling
 - file processing
 - state migration
-- Focus mode behavior
+- Focus Mode behavior
 - profile management
 
 Current status:
@@ -340,6 +415,7 @@ npm test
 - Learning state migration
 - Automated testing
 - CI pipeline
+- Product documentation
 
 ## Future Improvements
 

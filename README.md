@@ -5,9 +5,29 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-blue)
 ![Tests](https://img.shields.io/badge/tests-149%20passing-success)
 
-An AI-powered statistics learning platform that helps students build statistical intuition through personalized missions, interactive practice, and adaptive learning workflows.
+An AI-assisted statistics learning platform that helps students build statistical intuition through personalized missions, focused learning sessions, and adaptive progress tracking.
 
-StatQuest transforms traditional studying into a structured learning experience by combining goal-based planning, progress tracking, focused study sessions, and evidence-based review.
+StatQuest transforms studying from a passive activity into a structured learning workflow:
+
+```
+Goal
+ |
+Mission Generation
+ |
+Focused Learning
+ |
+Progress Tracking
+ |
+Better Recommendations
+```
+
+---
+
+# Live Demo
+
+🚀 Try StatQuest:
+
+https://statquest-azure.vercel.app/
 
 ---
 
@@ -17,7 +37,7 @@ StatQuest transforms traditional studying into a structured learning experience 
 
 ![Dashboard](docs/screenshots/dashboard.png)
 
-The dashboard provides a central learning workspace containing:
+The dashboard provides a central learning workspace with:
 
 - active learning goals
 - recommended missions
@@ -31,17 +51,17 @@ The dashboard provides a central learning workspace containing:
 
 ![Mission Generation](docs/screenshots/mission-generation.png)
 
-StatQuest converts learning goals into structured learning missions.
+StatQuest converts learning goals into structured missions.
 
 Each mission includes:
 
-- recommended learning tasks
-- estimated completion time
+- learning objectives
+- estimated duration
 - difficulty level
 - XP rewards
-- reasoning behind recommendations
+- actionable learning steps
 
-The goal is to answer:
+The system helps answer:
 
 > "What should I study next, and why?"
 
@@ -51,14 +71,14 @@ The goal is to answer:
 
 ![Mission Details](docs/screenshots/mission-details.png)
 
-Each mission breaks learning into actionable steps:
+Each mission breaks learning into smaller actions:
 
-- define the main idea
-- inspect concrete examples
+- understand the main idea
+- inspect examples
 - complete guided practice
-- verify understanding independently
+- verify understanding
 
-This encourages active learning instead of passive content consumption.
+This encourages active learning instead of passive reading.
 
 ---
 
@@ -66,45 +86,45 @@ This encourages active learning instead of passive content consumption.
 
 ![Focus Mode](docs/screenshots/focus-mode.png)
 
-Focus Mode provides a distraction-free learning environment with:
+Focus Mode provides a distraction-free learning environment.
+
+Features:
 
 - active learning task
 - timer-based sessions
 - progress tracking
+- completion feedback
 - reward system
-- focus companion
 
 ---
 
 # Overview
 
-Many students struggle with statistics not because of mathematical difficulty, but because they lack:
+Many students struggle with statistics not because concepts are impossible, but because they lack:
 
 - a clear learning path
-- feedback on weak areas
+- personalized feedback
 - consistent review habits
-- practice connected to real understanding
+- structured practice
 
-StatQuest addresses this by creating a personalized learning system that adapts to:
+StatQuest addresses this by creating a learning system that adapts to:
 
 - learning goals
-- uploaded study materials
-- progress history
+- study progress
+- completed missions
 - review needs
-- completion evidence
+- uploaded materials
 
-The platform helps learners build a consistent loop:
+The platform creates a continuous improvement loop:
 
 ```
-Goal
+Learn
  |
-Mission Generation
+Practice
  |
-Focused Learning
+Measure Progress
  |
-Progress Tracking
- |
-Improved Recommendations
+Adjust Future Learning
 ```
 
 ---
@@ -116,17 +136,16 @@ Improved Recommendations
 StatQuest generates structured missions based on:
 
 - current goals
+- learning progress
 - topic mastery
-- review schedule
-- upcoming assessments
-- available study time
+- review requirements
 
 Mission types include:
 
 - learning new concepts
 - reviewing weak areas
-- practicing previously learned topics
-- reinforcing successful skills
+- practicing previous knowledge
+- reinforcing understanding
 
 ---
 
@@ -140,13 +159,13 @@ Features:
 - timer-based learning
 - progress tracking
 - completion evidence
-- streak tracking
+- learning streaks
 
 The system separates:
 
 - time spent studying
-- cognitive difficulty
-- learning progress
+- actual learning progress
+- task completion
 
 to avoid rewarding superficial activity.
 
@@ -157,48 +176,30 @@ to avoid rewarding superficial activity.
 StatQuest tracks:
 
 - completed missions
-- mastery level
-- review timing
+- mastery progress
 - learning streaks
 - XP progression
+- review history
 
-The system uses deterministic rules to make learning recommendations consistent and explainable.
+The system uses deterministic rules to keep recommendations predictable and explainable.
 
 ---
 
 ## Document Understanding
 
-Students can provide learning materials such as:
-
-- PDFs
-- documents
-- notes
-
-The system extracts useful information and connects it with learning goals.
+Students can provide learning materials.
 
 Supported processing:
 
 - PDF extraction
 - DOCX parsing
-- OCR-based text recognition
+- OCR text recognition
+
+Future versions can use extracted information for more personalized recommendations.
 
 ---
 
-## Local-First Architecture
-
-The current version focuses on privacy and simplicity.
-
-User data is stored locally, allowing:
-
-- offline-friendly usage
-- no required account
-- fast interaction
-
-Future versions can migrate to a full production backend.
-
----
-
-# Tech Stack
+# Technology Stack
 
 ## Frontend
 
@@ -207,11 +208,12 @@ Future versions can migrate to a full production backend.
 - TypeScript
 - Tailwind CSS
 
-## Data & Logic
+## Application Logic
 
-- Local persistence
 - Deterministic learning engine
-- State migration system
+- Mission generation system
+- Progress tracking system
+- Local state management
 
 ## File Processing
 
@@ -250,7 +252,7 @@ Client
  |
 Next.js API Layer
  |
-Application Services
+Backend Services
  |
 PostgreSQL Database
  |
@@ -259,9 +261,10 @@ Background Workers
 Analytics Pipeline
 ```
 
-More details:
+Detailed documentation:
 
 - `docs/architecture/overview.md`
+- `docs/architecture/decisions.md`
 
 ---
 
@@ -269,32 +272,35 @@ More details:
 
 ## Deterministic Learning Engine
 
-Instead of generating random recommendations, StatQuest uses rule-based decision making for:
+Instead of generating random recommendations, StatQuest uses rule-based decision making.
 
-- mission priority
-- review scheduling
-- mastery updates
-- XP calculation
+Responsibilities:
 
-This improves:
+- prioritize missions
+- schedule reviews
+- update mastery
+- calculate rewards
 
-- predictability
-- debugging
-- testing reliability
+Benefits:
+
+- predictable behavior
+- easier debugging
+- easier testing
+- explainable recommendations
 
 ---
 
 ## Testing Strategy
 
-The project contains automated tests covering:
+The project includes automated tests covering:
 
 - mission generation
 - learning progression
 - review scheduling
-- file processing
 - state migration
 - Focus Mode behavior
 - profile management
+- file processing
 
 Current status:
 
@@ -307,21 +313,43 @@ Current status:
 
 ## Continuous Integration
 
-Every pull request runs:
+Every change is validated through GitHub Actions:
 
 ```
-Install dependencies
+Install Dependencies
         |
-Type checking
+Type Checking
         |
 Linting
         |
-Automated tests
+Automated Tests
         |
-Production build
+Production Build
 ```
 
 This prevents broken code from reaching the main branch.
+
+---
+
+# Deployment
+
+StatQuest is deployed using Vercel.
+
+Deployment workflow:
+
+```
+GitHub Repository
+        |
+        v
+Vercel Build
+        |
+        v
+Production Deployment
+```
+
+Production URL:
+
+https://statquest-azure.vercel.app/
 
 ---
 
@@ -350,7 +378,7 @@ Install dependencies:
 npm install
 ```
 
-Run development server:
+Start development server:
 
 ```bash
 npm run dev
@@ -396,7 +424,7 @@ Type checking:
 npm run typecheck
 ```
 
-Tests:
+Run tests:
 
 ```bash
 npm test
@@ -416,6 +444,7 @@ npm test
 - Automated testing
 - CI pipeline
 - Product documentation
+- Live deployment
 
 ## Future Improvements
 
@@ -434,11 +463,11 @@ Current version is a local-first MVP.
 
 Security considerations:
 
-- No sensitive information should be stored locally
+- No sensitive user information should be stored insecurely
 - File processing is performed locally
 - Authentication is not implemented yet
 
-Future versions will introduce:
+Future improvements:
 
 - secure authentication
 - server-side validation
@@ -463,4 +492,4 @@ Interested in:
 
 # License
 
-This project is for educational and portfolio purposes.
+This project is developed for educational and portfolio purposes.

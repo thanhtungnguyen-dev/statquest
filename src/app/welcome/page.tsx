@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./welcome.module.css";
 
@@ -84,13 +85,13 @@ export default function WelcomePage() {
       <div className={styles.backgroundGlow} aria-hidden="true" />
       <div className={styles.pageContent}>
         <header className={styles.nav}>
-          <a className={styles.wordmark} href="/" aria-label="StatQuest welcome">
+          <Link className={styles.wordmark} href="/" aria-label="StatQuest welcome">
             <Image src="/branding/statquest-symbol-light.png" width={42} height={42} alt="" unoptimized />
             <span>StatQuest<span className={styles.wordmarkDot}>.</span></span>
-          </a>
+          </Link>
           <nav className={styles.navLinks} aria-label="Primary navigation">
             <a href="#how-it-works">How it works</a>
-            <a className={styles.navAction} href="/app">Open StatQuest <span aria-hidden="true">↗</span></a>
+            <Link className={styles.navAction} href="/app">Open StatQuest <span aria-hidden="true">↗</span></Link>
           </nav>
         </header>
 
@@ -107,7 +108,7 @@ export default function WelcomePage() {
                 StatQuest turns what you want to achieve into something you can do <strong>today.</strong>
               </p>
               <div className={styles.heroButtons}>
-                <a className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></a>
+                <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
                 <a className={styles.secondaryButton} href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
               </div>
               <div className={styles.questions} aria-label="Choose what you are struggling with">
@@ -171,7 +172,7 @@ export default function WelcomePage() {
           <section className={styles.closing}>
             <span className={styles.sectionEyebrow}>YOUR NEXT STEP STARTS HERE</span>
             <h2>You bring the goal.<br /><em>We&apos;ll help with the next step.</em></h2>
-            <a className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></a>
+            <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
             <p>Free to get started · No account required · Progress saved on this device</p>
           </section>
         </main>

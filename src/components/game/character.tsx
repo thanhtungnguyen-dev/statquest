@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { HERO_PRESETS, heroColors } from "@/lib/hero";
 import type { HeroCustomization, HeroPreset } from "@/lib/types";
@@ -74,18 +73,26 @@ export function Character({
       aria-label={decorative ? undefined : `${heroName}, your learning companion`}
     >
       <span className="companion-motion">
-        <img
+        <Image
           className="companion-image"
           src={companionImage}
           alt=""
+          width={640}
+          height={640}
+          sizes="(max-width: 600px) 160px, (max-width: 1024px) 240px, 320px"
+          loading={entryAsset ? "eager" : "lazy"}
           draggable={false}
         />
       </span>
 
       <span className="equipped-accessory" aria-hidden="true">
-        <img
+        <Image
           src={ACCESSORY_IMAGES[hero.accessory]}
           alt=""
+          width={640}
+          height={640}
+          sizes="(max-width: 600px) 160px, (max-width: 1024px) 240px, 320px"
+          loading={entryAsset ? "eager" : "lazy"}
           draggable={false}
         />
       </span>

@@ -52,13 +52,15 @@ export default function WelcomePage() {
   const [phase, setPhase] = useState<IntroPhase>("checking");
   const [struggle, setStruggle] = useState(0);
   const skipRef = useRef<HTMLButtonElement>(null);
+  const startRef = useRef<HTMLAnchorElement>(null);
+  const introPresentedRef = useRef(false);
   const currentMission = struggles[struggle].mission;
 
-  // Play the short opening only once per browser tab. Never block reduced-motion users.
+  // Play a short optional intro once per browser, not once per tab.
   useEffect(() => {
     let seen = false;
     try {
-      seen = sessionStorage.getItem(INTRO_KEY) === "1";
+      seen = localStorage.getItem(INTRO_KEY) === "1";
     } catch {
       // Storage can be unavailable in private mode.
     }
@@ -71,9 +73,9 @@ export default function WelcomePage() {
 
   useEffect(() => {
     const next: Partial<Record<IntroPhase, [IntroPhase, number]>> = {
-      opening: ["question", 1150],
-      question: ["exit", 1350],
-      exit: ["done", 580],
+      opening: ["question", 600],
+      question: ["exit", 650],
+      exit: ["done", 350],
     };
     const transition = next[phase];
     if (!transition) return;
@@ -84,14 +86,19 @@ export default function WelcomePage() {
   useEffect(() => {
     if (phase !== "done") return;
     try {
-      sessionStorage.setItem(INTRO_KEY, "1");
+      localStorage.setItem(INTRO_KEY, "1");
     } catch {
-      // The landing works without session storage.
+      // The landing works without storage access.
+    }
+    if (introPresentedRef.current) {
+      startRef.current?.focus({ preventScroll: true });
+      introPresentedRef.current = false;
     }
   }, [phase]);
 
   useEffect(() => {
     if (phase === "checking" || phase === "done") return;
+    introPresentedRef.current = true;
     const oldOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     skipRef.current?.focus({ preventScroll: true });
@@ -120,7 +127,7 @@ export default function WelcomePage() {
       <div className={styles.pageContent}>
         <header className={styles.nav}>
           <Link className={styles.wordmark} href="/" aria-label="StatQuest welcome">
-            <Image src="/branding/statquest-symbol-light.png" width={42} height={42} alt="" unoptimized />
+            <Image src="/branding/statquest-symbol-light.png" width={42} height={42} alt="" />
             <span>StatQuest<span className={styles.wordmarkDot}>.</span></span>
           </Link>
           <nav className={styles.navLinks} aria-label="Primary navigation">
@@ -132,7 +139,7 @@ export default function WelcomePage() {
         <main>
           <section className={styles.hero} aria-labelledby="welcome-heading">
             <div className={styles.heroText}>
-              <span className={styles.eyebrow}><span className={styles.eyebrowSpark}>✦</span> SMALL STEPS. REAL PROGRESS.</span>
+              <span className={styles.eyebrow}><span className={styles.eyebrowSpark}>✦</span> TURN GOALS INTO STUDY SESSIONS</span>
               <h1 id="welcome-heading" className={styles.heading} aria-live="polite">
                 Have goals,<br />
                 but <span className={styles.highlight} key={struggle}>{struggles[struggle].heading}</span>
@@ -142,7 +149,7 @@ export default function WelcomePage() {
                 StatQuest turns your goal into a focused mission you can start <strong>today.</strong>
               </p>
               <div className={styles.heroButtons}>
-                <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
+                <Link ref={startRef} className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
                 <a className={styles.secondaryButton} href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
               </div>
               <div className={styles.questions} role="group" aria-label="Choose what you are struggling with">
@@ -185,7 +192,6 @@ export default function WelcomePage() {
                 </div>
                 <div className={styles.previewFooter}><span className={styles.focusIcon} aria-hidden="true">◷</span><span>Focus on one step</span><strong>25 min</strong></div>
               </article>
-              <div className={styles.floatNote}><span className={styles.noteStar}>✦</span> One step closer.</div>
               <span className={styles.decorStar} aria-hidden="true">✳</span>
             </div>
           </section>
@@ -205,7 +211,7 @@ export default function WelcomePage() {
 
           <section className={styles.closing}>
             <span className={styles.sectionEyebrow}>YOUR NEXT STEP STARTS HERE</span>
-            <h2>You bring the goal.<br /><em>We&apos;ll help with the next step.</em></h2>
+            <h2>Ready to study?<br /><em>Start with one clear step.</em></h2>
             <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
             <p>No account required · Progress stays in this browser</p>
           </section>
@@ -226,7 +232,7 @@ export default function WelcomePage() {
           <div className={styles.introCenter} aria-live="polite">
             {phase === "opening" ? <h2>Have goals,<br /><em>but...</em></h2> : <h2>Where do you<br /><em>start?</em></h2>}
           </div>
-          <div className={styles.introBottom}>LESS OVERTHINKING. MORE DOING. <span>✦</span> ONE STEP AT A TIME.</div>
+          <div className={styles.introBottom}>GOAL <span>✦</span> MISSION <span>✦</span> FOCUS</div>
         </div>
       )}
     </div>

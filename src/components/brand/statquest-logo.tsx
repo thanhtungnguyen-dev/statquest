@@ -14,7 +14,6 @@ export function StatQuestLogo({ className = "" }: StatQuestLogoProps) {
         alt=""
         width={64}
         height={64}
-        unoptimized
       />
       <Image
         className="statquest-logo-image statquest-logo-dark"
@@ -22,7 +21,6 @@ export function StatQuestLogo({ className = "" }: StatQuestLogoProps) {
         alt=""
         width={64}
         height={64}
-        unoptimized
       />
     </span>
   );

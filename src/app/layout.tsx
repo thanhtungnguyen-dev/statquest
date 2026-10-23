@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./polish.css";
+import "./quest-refresh.css";
 
 export const metadata: Metadata = {
   applicationName: "StatQuest",

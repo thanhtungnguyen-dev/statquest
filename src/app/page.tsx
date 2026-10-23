@@ -22,6 +22,7 @@ import {
 } from "@/components/game/adventure-onboarding";
 import { EnterWorldTransition } from "@/components/game/enter-world-transition";
 import { Character } from "@/components/game/character";
+import { QuestBoard } from "@/components/game/quest-board";
 import { playerClassDetails } from "@/components/game/rpg-character-setup";
 import { FocusRoom } from "@/components/focus/focus-room";
 import { FocusTopbar } from "@/components/focus/focus-topbar";
@@ -2361,31 +2362,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="dashboard-grid" aria-label="Adventure status">
-          <article><span>Player</span><strong>{player.name}</strong></article>
-          <article><span>Companion</span><strong>{companion.label}</strong></article>
-          <article><span>Level</span><strong>{levelProgress.level}</strong></article>
-          <article><span>Total XP</span><strong>{appState.totalXp}</strong></article>
-        </section>
-
-        <section className="mission-section" id="mission">
-          <div className="section-heading">
-            <p className="eyebrow">CURRENT QUEST</p>
-            <h2>{activeGoal?.subject ?? "No active goal"}</h2>
-          </div>
-          {todayMission ? (
-            <article className="mission-card">
-              <p className="eyebrow">{todayMission.status} MISSION</p>
-              <h3>{todayMission.title}</h3>
-              <p>{todayMission.objective}</p>
-              <strong>{todayMission.xpAwarded ? "Completed" : `${todayMission.xp} XP`}</strong>
-            </article>
-          ) : (
-            <div className="empty-state compact">
-              <p>No mission has been generated today.</p>
-            </div>
-          )}
-        </section>
+        <QuestBoard
+          goals={activeGoals}
+          missions={appState.missions}
+          featuredMission={todayMission}
+          weekly={thisWeek}
+          onOpenFocus={() => changeMode("focus")}
+        />
       </main>
     );
   }
@@ -2465,6 +2448,12 @@ export default function Home() {
         onLogout={logOutLocalSession}
       />
 
+      <nav className="focus-mobile-navigation" aria-label="Dashboard shortcuts" inert={focusRoomVisible ? true : undefined} aria-hidden={focusRoomVisible || undefined}>
+        <a href="#focus-goals-title"><span aria-hidden="true">◈</span> Goals</a>
+        <a href="#focus-missions-title"><span aria-hidden="true">✦</span> Missions</a>
+        <a href="#focus-progress-title"><span aria-hidden="true">◷</span> Progress</a>
+      </nav>
+
       <section
         className="focus-dashboard"
         id="focus-dashboard"
@@ -2509,7 +2498,7 @@ export default function Home() {
               </label>
               <div className="compact-field-grid">
                 <label>
-                  Current level
+                  Your skill level
                   <select
                     name="currentLevel"
                     value={goalDraft.currentLevel}
@@ -2526,7 +2515,7 @@ export default function Home() {
                   </select>
                 </label>
                 <label>
-                  Minutes
+                  Minutes per study day
                   <input
                     name="minutesPerDay"
                     type="number"
@@ -2539,7 +2528,7 @@ export default function Home() {
                   />
                 </label>
                 <label>
-                  Days/week
+                  Study days per week
                   <input
                     name="daysPerWeek"
                     type="number"
@@ -3088,6 +3077,32 @@ export default function Home() {
             </div>
           </div>
 
+          {(() => {
+            const tracked = activeGoals.flatMap((goal) => goal.learningTopics);
+            const mastery = tracked.length
+              ? Math.round(tracked.reduce((total, topic) => total + topic.mastery, 0) / tracked.length)
+              : null;
+            return (
+              <div className="focus-skill-pulse" aria-label="Learning mastery snapshot">
+                <div className="focus-skill-pulse-ring" role={mastery === null ? undefined : "progressbar"}
+                  aria-label={mastery === null ? undefined : "Average topic mastery"}
+                  aria-valuemin={mastery === null ? undefined : 0}
+                  aria-valuemax={mastery === null ? undefined : 100}
+                  aria-valuenow={mastery ?? undefined}
+                  style={{ background: `conic-gradient(#2dc3bd ${mastery ?? 0}%, #dce9f0 0)` }}>
+                  <div><strong>{mastery === null ? "—" : `${mastery}%`}</strong><small>{mastery === null ? "No topics" : "Mastery"}</small></div>
+                </div>
+                <div className="focus-skill-pulse-copy">
+                  <span>LEARNING SNAPSHOT</span>
+                  <strong>{activeGoals.length === 0 ? "Your progress starts with one goal" : `${activeGoals.length} active ${activeGoals.length === 1 ? "goal" : "goals"}`}</strong>
+                  <p>{mastery === null
+                    ? "Add a goal and generate a mission to start tracking real learning progress."
+                    : `Across ${tracked.length} tracked ${tracked.length === 1 ? "topic" : "topics"}. Keep building on what you already know.`}</p>
+                </div>
+              </div>
+            );
+          })()}
+
           <div className="compact-progress-grid">
             <div><span>Level</span><strong>{levelProgress.level}</strong></div>
             <div><span>Total XP</span><strong>{appState.totalXp}</strong></div>
@@ -3363,7 +3378,7 @@ export default function Home() {
                   </dl>
                 </>
               ) : (
-                <p>No scoped review yet.</p>
+                <p>No reviews yet. Your latest review will appear here.</p>
               )}
             </div>
 

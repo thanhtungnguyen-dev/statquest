@@ -177,3 +177,7 @@
 :global(html[data-theme="dark"]) .stepNumber { color:#b8c3df; }
 :global(html[data-theme="dark"]) .featureTag { color:#b9c5f4; }
 :global(html[data-theme="dark"]) .eyebrow, :global(html[data-theme="dark"]) .sectionEyebrow { color:#bbc6ff; }
+
+/* Chromium/axe-confirmed light-mode contrast for mission status labels. */
+.taskDone small { color:#0f7357; }
+.taskCurrent small { color:#38449f; }

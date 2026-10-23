@@ -5990,3 +5990,136 @@ html[data-theme="dark"] .entry-return-grid {
   .entry-product-cycle li.is-next-focus,
   .entry-mission-main:has(.entry-primary-action:is(:hover, :focus-visible)) .entry-guardian .quest-character { transform: none; }
 }
+
+/* Make the logo visible in both themes */
+html[data-theme="light"] .brand-mark.statquest-mark {
+  background: transparent url("/branding/statquest-app-icon-light.svg") center / contain no-repeat;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .brand-mark.statquest-mark {
+  background: transparent url("/branding/statquest-app-icon.svg") center / contain no-repeat;
+}
+
+/* STATQUEST_VISIBLE_LOGO_V3 — explicit image beats legacy purple backgrounds. */
+.brand-mark.statquest-mark,
+html[data-theme="light"] .brand-mark.statquest-mark,
+html[data-theme="dark"] .brand-mark.statquest-mark {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  padding: 0;
+  overflow: hidden;
+  background: transparent !important;
+  border: 0;
+  box-shadow: none !important;
+  color: transparent;
+  font-size: 0;
+}
+
+.brand-mark.statquest-mark > .statquest-brand-image {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-mark.statquest-mark > .statquest-brand-image--light { display: block; }
+.brand-mark.statquest-mark > .statquest-brand-image--dark { display: none; }
+html[data-theme="dark"] .brand-mark.statquest-mark > .statquest-brand-image--light { display: none; }
+html[data-theme="dark"] .brand-mark.statquest-mark > .statquest-brand-image--dark { display: block; }
+
+/* STATQUEST_THEME_ICON_FIX_V3_START */
+/* Override older html[data-theme="light"] .brand-mark gradient with the actual icon. */
+html[data-theme="light"] .brand-mark.statquest-mark {
+  background: transparent url("/branding/statquest-brand-light-v3.png") center / contain no-repeat;
+  color: transparent;
+  border: 0;
+}
+html[data-theme="dark"] .brand-mark.statquest-mark {
+  background: transparent url("/branding/statquest-brand-dark-v3.png") center / contain no-repeat;
+  color: transparent;
+  border: 0;
+}
+html:not([data-theme="dark"]) .brand-mark.statquest-mark {
+  background-image: url("/branding/statquest-brand-light-v3.png");
+}
+/* STATQUEST_THEME_ICON_FIX_V3_END */
+
+/* STATQUEST_REAL_LOGO_FIX_START */
+/* The previous empty square was caused by background-color rules winning over
+   background-image rules in light mode. These image elements are immune. */
+html .brand-mark.statquest-mark {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  overflow: hidden;
+  padding: 0;
+  background: transparent !important;
+  background-image: none !important;
+  color: transparent;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+html .brand-mark.statquest-mark > .statquest-mark-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+html .brand-mark.statquest-mark > .statquest-mark-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .brand-mark.statquest-mark > .statquest-mark-light {
+  display: none;
+}
+
+html[data-theme="dark"] .brand-mark.statquest-mark > .statquest-mark-dark {
+  display: block;
+}
+/* STATQUEST_REAL_LOGO_FIX_END */
+
+/* STATQUEST_DOM_LOGO_FIX_START */
+/* A dedicated class avoids existing .brand-mark purple background rules. */
+.statquest-logo {
+  position: relative;
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  vertical-align: middle;
+}
+.statquest-logo > .statquest-logo-image {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+html .statquest-logo > .statquest-logo-dark { display: none; }
+html[data-theme="dark"] .statquest-logo > .statquest-logo-light { display: none; }
+html[data-theme="dark"] .statquest-logo > .statquest-logo-dark { display: block; }
+.focus-brand .statquest-logo { width: 40px; height: 40px; }
+.entry-header .statquest-logo { width: 44px; height: 44px; }
+@media (max-width: 760px) {
+  .entry-header .statquest-logo { width: 40px; height: 40px; }
+}
+/* STATQUEST_DOM_LOGO_FIX_END */

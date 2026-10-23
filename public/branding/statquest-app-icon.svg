@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="StatQuest app icon">
+    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#182642"/><stop offset="1" stop-color="#0B1220"/></linearGradient><radialGradient id="glow" cx=".75" cy=".2" r=".8"><stop stop-color="#5965e8" stop-opacity=".19"/><stop offset="1" stop-color="#5965e8" stop-opacity="0"/></radialGradient></defs>
+    <rect x="8" y="8" width="496" height="496" rx="114" fill="url(#bg)"/><rect x="8" y="8" width="496" height="496" rx="114" fill="url(#glow)"/><path d="M 85 75 H 402" stroke="white" stroke-opacity=".09" stroke-width="2" stroke-linecap="round"/>
+    <defs>
+    <linearGradient id="ring" x1=".05" y1="0" x2=".9" y2="1" objectBoundingBox="true"><stop stop-color="#7B86FF"/><stop offset="1" stop-color="#5866F4"/></linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#39D69D"/><stop offset="1" stop-color="#77F1C0"/></linearGradient>
+    <linearGradient id="needle" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#5866F4"/><stop offset="1" stop-color="#7B86FF"/></linearGradient>
+  </defs>
+  <!-- Arc is a learning compass; its opening leads into the north-point. -->
+  <path d="M 407.47 333.18 A 170 170 0 1 1 351.06 115.06" fill="none" stroke="url(#ring)" stroke-width="27" stroke-linecap="round"/>
+  <!-- Subtle navigation tick points along the inner compass field -->
+  <circle cx="128" cy="173" r="7" fill="#7B86FF" opacity=".56"/>
+  <circle cx="298" cy="390" r="6" fill="#7B86FF" opacity=".4"/>
+  <!-- The route maps increasing understanding rather than decorative statistics. -->
+  <path d="M 158 322 L 221 275 L 270 298 L 342 196" fill="none" stroke="url(#path)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="158" cy="322" r="15" fill="#39D69D"/>
+  <circle cx="221" cy="275" r="13" fill="#39D69D"/>
+  <circle cx="270" cy="298" r="13" fill="#39D69D"/>
+  <!-- Compass arrowhead points to the next useful mission. -->
+  <path d="M 322 187 L 382 134 L 367 220 L 351 191 Z" fill="url(#needle)" stroke="#0B1220" stroke-width="7" stroke-linejoin="round"/>
+  <!-- Reward shimmer is intentionally subtle and distinct from the main brand. -->
+  <path d="M 391 104 L 396 116 L 408 121 L 396 126 L 391 138 L 386 126 L 374 121 L 386 116 Z" fill="#FFC66E"/>
+    
+    </svg>

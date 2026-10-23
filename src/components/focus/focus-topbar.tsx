@@ -1,3 +1,4 @@
+import { StatQuestLogo } from "@/components/brand/statquest-logo";
 import type { AppTheme } from "@/lib/theme";
 import type {
   LevelCosmeticTier,
@@ -82,7 +83,7 @@ export function FocusTopbar({
         href="#focus-dashboard"
         aria-label="StatQuest Focus home"
       >
-        <span className={`brand-mark level-cosmetic-${levelTier}`}>SQ</span>
+        <StatQuestLogo className={`level-cosmetic-${levelTier}`} />
         <span>StatQuest</span>
       </a>
 

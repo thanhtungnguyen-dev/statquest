@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="StatQuest light app icon"><rect x="8" y="8" width="496" height="496" rx="114" fill="#F4F7FC"/><rect x="9" y="9" width="494" height="494" rx="113" stroke="#DFE6F4" stroke-width="2" fill="none"/><defs>
+    <linearGradient id="ring" x1=".05" y1="0" x2=".9" y2="1" objectBoundingBox="true"><stop stop-color="#5965E8"/><stop offset="1" stop-color="#3D47C7"/></linearGradient>
+    <linearGradient id="path" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#1FBD88"/><stop offset="1" stop-color="#62E0B1"/></linearGradient>
+    <linearGradient id="needle" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#3D47C7"/><stop offset="1" stop-color="#5965E8"/></linearGradient>
+  </defs>
+  <!-- Arc is a learning compass; its opening leads into the north-point. -->
+  <path d="M 407.47 333.18 A 170 170 0 1 1 351.06 115.06" fill="none" stroke="url(#ring)" stroke-width="27" stroke-linecap="round"/>
+  <!-- Subtle navigation tick points along the inner compass field -->
+  <circle cx="128" cy="173" r="7" fill="#5965E8" opacity=".56"/>
+  <circle cx="298" cy="390" r="6" fill="#5965E8" opacity=".4"/>
+  <!-- The route maps increasing understanding rather than decorative statistics. -->
+  <path d="M 158 322 L 221 275 L 270 298 L 342 196" fill="none" stroke="url(#path)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="158" cy="322" r="15" fill="#1FBD88"/>
+  <circle cx="221" cy="275" r="13" fill="#1FBD88"/>
+  <circle cx="270" cy="298" r="13" fill="#1FBD88"/>
+  <!-- Compass arrowhead points to the next useful mission. -->
+  <path d="M 322 187 L 382 134 L 367 220 L 351 191 Z" fill="url(#needle)" stroke="#F7F8FC" stroke-width="7" stroke-linejoin="round"/>
+  <!-- Reward shimmer is intentionally subtle and distinct from the main brand. -->
+  <path d="M 391 104 L 396 116 L 408 121 L 396 126 L 391 138 L 386 126 L 374 121 L 386 116 Z" fill="#E8A137"/>
+    </svg>

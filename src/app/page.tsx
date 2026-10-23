@@ -1,5 +1,8 @@
 "use client";
 
+import { StatQuestLogo } from "@/components/brand/statquest-logo";
+
+
 import {
   ChangeEvent,
   DragEvent,
@@ -918,7 +921,7 @@ export default function Home() {
           aria-expanded={aboutOpen}
           onClick={() => setAboutOpen(true)}
         >
-          <span className="brand-mark" aria-hidden="true">SQ</span>
+          <StatQuestLogo />
           <span className="entry-brand-copy">
             <strong>StatQuest</strong>
             <small>Focused learning</small>
@@ -946,7 +949,7 @@ export default function Home() {
         >
           <div className="entry-about-heading">
             <div className="entry-about-lockup">
-              <span className="brand-mark" aria-hidden="true">SQ</span>
+              <StatQuestLogo />
               <div>
                 <span>STATQUEST</span>
                 <h2 id="about-statquest-title">Focused daily learning progress</h2>
@@ -2306,7 +2309,7 @@ export default function Home() {
       <main className="page-shell">
         <header className="topbar">
           <a className="brand" href="#top" aria-label="StatQuest Adventure home">
-            <span className="brand-mark">SQ</span>
+            <StatQuestLogo />
             <span>StatQuest · Adventure</span>
           </a>
           <div className="profile-menu">
@@ -2390,7 +2393,7 @@ export default function Home() {
   if (!hydrated) {
     return (
       <main className="loading-screen">
-        <span className="brand-mark">SQ</span>
+        <StatQuestLogo />
         <p>Loading StatQuest…</p>
       </main>
     );

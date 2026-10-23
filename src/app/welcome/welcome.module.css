@@ -104,12 +104,12 @@
 .skipIntro span { margin-left:7px; }
 .skipIntro:hover { background:white; }
 .introCenter { position:relative; padding:15px; text-align:center; }
-.introCenter h2 { font-size:clamp(62px,11vw,142px); line-height:1.01; letter-spacing:-.083em; font-weight:900; animation:introIn .55s cubic-bezier(.22,.8,.2,1) both; }
+.introCenter h2 { font-size:clamp(62px,11vw,142px); line-height:1.01; letter-spacing:-.083em; font-weight:900; animation:introIn .75s cubic-bezier(.22,.8,.2,1) both; }
 .introCenter h2 em { color:#5a65e9; font-style:normal; }
 .intro[data-phase="question"] .introCenter h2 { font-size:clamp(55px,10vw,124px); }
 .introBottom { position:absolute; bottom:31px; left:22px; right:22px; text-align:center; font-size:11px; font-weight:850; letter-spacing:.15em; color:#60647d; }
 .introBottom span { margin:0 12px; color:#44ca9e; }
-.intro[data-phase="exit"] { animation:introExit .35s cubic-bezier(.74,0,.19,.98) both; pointer-events:none; }
+.intro[data-phase="exit"] { animation:introExit .7s cubic-bezier(.74,0,.19,.98) both; pointer-events:none; }
 .intro[data-phase="exit"] .introCenter { opacity:0; }
 @keyframes introIn { from{opacity:0; transform:translateY(22px) scale(.98)} to{opacity:1; transform:translateY(0) scale(1)} }
 @keyframes introExit { from{transform:translateY(0)} to{transform:translateY(-104%)} }

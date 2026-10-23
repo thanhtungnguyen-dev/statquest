@@ -11,13 +11,13 @@ const LOGO = readFileSync(new URL("../src/components/brand/statquest-logo.tsx", 
 test("the optional intro is brief, remembered, and keyboard accessible", () => {
   assert.match(WELCOME, /localStorage\.getItem\(INTRO_KEY\)/);
   assert.match(WELCOME, /localStorage\.setItem\(INTRO_KEY, "1"\)/);
-  assert.match(WELCOME, /opening: \["question", 600\]/);
-  assert.match(WELCOME, /question: \["exit", 650\]/);
-  assert.match(WELCOME, /exit: \["done", 350\]/);
+  assert.match(WELCOME, /opening: \["question", 1300\]/);
+  assert.match(WELCOME, /question: \["exit", 1400\]/);
+  assert.match(WELCOME, /exit: \["done", 700\]/);
   assert.match(WELCOME, /skipRef\.current\?\.focus/);
   assert.match(WELCOME, /startRef\.current\?\.focus/);
   assert.match(WELCOME, /prefers-reduced-motion: reduce/);
-  assert.match(LANDING, /introExit \.35s/);
+  assert.match(LANDING, /introExit \.7s/);
 });
 
 test("responsive companion artwork uses the Next.js optimizer", () => {

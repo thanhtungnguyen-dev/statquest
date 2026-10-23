@@ -2844,7 +2844,7 @@ export default function Home() {
           <div className="focus-panel-heading">
             <div>
               <p className="eyebrow">TODAY&apos;S MISSIONS</p>
-              <h2 id="focus-missions-title">Choose the work in front of you</h2>
+              <h2 id="focus-missions-title">Your next study mission</h2>
             </div>
             <span className="focus-count">{activeMissions.length} / 5</span>
           </div>
@@ -2902,8 +2902,17 @@ export default function Home() {
                 </div>
               ) : (
                 <div className="empty-state compact focus-empty">
-                  <h3>No active missions</h3>
-                  <p>Generate a mission from any active goal. Up to five goals can have missions at once.</p>
+                  <h3>{activeGoals.length === 0 ? "Start with one learning goal" : "No active missions yet"}</h3>
+                  <p>{activeGoals.length === 0
+                    ? "Choose a subject and a result you want to achieve. StatQuest will help break it into manageable study steps."
+                    : "Choose Generate mission on an active goal to plan your next focused study session."}</p>
+                  {activeGoals.length === 0 && (
+                    <button type="button" className="secondary-button focus-empty-action" onClick={() => {
+                      document.querySelector<HTMLInputElement>('#focus-dashboard input[name="subject"]')?.focus();
+                    }}>
+                      Add your first goal →
+                    </button>
+                  )}
                   {missionError && <p className="form-error" role="alert">{missionError}</p>}
                 </div>
               )
@@ -3075,7 +3084,7 @@ export default function Home() {
           <div className="focus-panel-heading">
             <div>
               <p className="eyebrow">PROGRESS</p>
-              <h2 id="focus-progress-title">Keep the loop honest</h2>
+              <h2 id="focus-progress-title">Your learning progress</h2>
             </div>
           </div>
 

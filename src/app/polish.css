@@ -83,3 +83,28 @@
     transition-duration: .01ms;
   }
 }
+
+/* Give the learner room to work on laptop/desktop viewports. */
+@media(min-width:1240px) {
+  .focus-shell .focus-dashboard {
+    grid-template-columns:minmax(340px,27fr) minmax(400px,46fr) minmax(330px,27fr);
+    gap:14px;
+  }
+  .focus-shell .compact-field-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .focus-shell .focus-top-stats { grid-template-columns:repeat(3,minmax(120px,150px)); }
+  .focus-shell .focus-level-item small { display:none; }
+}
+@media(min-width:1101px) and (min-height:740px) {
+  .focus-shell .mission-detail-scroll:has(.focus-empty) {
+    display:grid;
+    place-items:center;
+    min-height:440px;
+  }
+  .focus-shell .focus-empty {
+    width:min(100%,560px);
+    padding:clamp(24px,3vw,38px);
+  }
+  .focus-shell .focus-empty h3 { font-size:clamp(22px,2.4vw,29px); }
+  .focus-shell .focus-empty p { max-width:460px; line-height:1.65; }
+}
+.focus-shell .focus-empty-action { margin-top:18px; min-height:44px; padding:10px 18px; font-size:14px; }

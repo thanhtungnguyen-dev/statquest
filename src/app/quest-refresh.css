@@ -68,3 +68,53 @@
   .focus-mobile-navigation a { font-size:11px; }
   .focus-mobile-navigation a span { display:none; }
 }
+
+/* Adventure header mobile layout: prevent four navigation actions from
+   extending beyond the phone viewport. */
+@media(max-width:760px) {
+  .page-shell > .topbar {
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    align-items:stretch;
+    gap:12px;
+    padding:16px 0 12px;
+    max-width:100%;
+    min-width:0;
+  }
+  .page-shell > .topbar .brand {
+    min-width:0;
+    max-width:100%;
+    flex-wrap:wrap;
+    font-size:16px;
+    line-height:1.3;
+  }
+  .page-shell > .topbar .profile-menu {
+    display:grid;
+    width:100%;
+    min-width:0;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .page-shell > .topbar .profile-menu .status-button {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    width:100%;
+    min-height:43px;
+    padding:9px 7px;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.3;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    text-align:center;
+  }
+  .page-shell > .hero {
+    grid-template-columns:minmax(0,1fr);
+    gap:16px;
+    padding:25px 0 28px;
+  }
+  .page-shell > .hero > * { min-width:0; }
+}

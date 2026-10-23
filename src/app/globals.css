@@ -6010,9 +6010,9 @@ html[data-theme="dark"] .brand-mark.statquest-mark {
   flex: 0 0 auto;
   padding: 0;
   overflow: hidden;
-  background: transparent !important;
+  background: transparent;
   border: 0;
-  box-shadow: none !important;
+  box-shadow: none;
   color: transparent;
   font-size: 0;
 }
@@ -6055,8 +6055,8 @@ html .brand-mark.statquest-mark {
   flex: 0 0 auto;
   overflow: hidden;
   padding: 0;
-  background: transparent !important;
-  background-image: none !important;
+  background: transparent;
+  background-image: none;
   color: transparent;
   font-size: 0;
   vertical-align: middle;

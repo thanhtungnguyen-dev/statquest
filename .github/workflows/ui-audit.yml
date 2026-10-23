@@ -1,0 +1,47 @@
+name: UI browser audit
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install project
+        run: npm ci
+      - name: Install browser tooling
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts playwright@1.56.1 axe-core@4.11.0
+          npx playwright install --with-deps chromium
+      - name: Build app
+        run: npm run build
+      - name: Start app
+        run: |
+          npm run start > /tmp/statquest-ui.log 2>&1 &
+          for i in $(seq 1 35); do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/statquest-ui.log
+          exit 1
+      - name: Test browser layouts and accessibility
+        run: node scripts/visual-smoke.mjs
+      - name: Upload UI screenshots and audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: statquest-ui-audit
+          path: ui-artifacts/
+          if-no-files-found: ignore

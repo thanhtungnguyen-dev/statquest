@@ -30,7 +30,7 @@ import { getDoorDialogue, type TimeOfDay } from "@/lib/world";
 
 export type SavedProfileInput = {
   displayName: string;
-  birthYear: number;
+  birthYear: number | null;
   learningStage: LearningStage;
   careerInterest: string;
   hero: HeroCustomization;
@@ -254,7 +254,7 @@ export function AdventureOnboarding({
 
     onSave({
       displayName: draft.displayName.trim(),
-      birthYear: Number(draft.birthYear),
+      birthYear: draft.birthYear.trim() ? Number(draft.birthYear) : null,
       learningStage: draft.learningStage as LearningStage,
       careerInterest: draft.careerInterest.trim(),
       hero: { ...draft.hero },
@@ -341,14 +341,14 @@ export function AdventureOnboarding({
               </label>
 
               <label>
-                <span>Birth year</span>
+                <span>Birth year (optional)</span>
                 <input
                   id="profile-birthYear"
                   type="text"
                   inputMode="numeric"
                   maxLength={4}
                   value={draft.birthYear}
-                  placeholder="When did your journey begin?"
+                  placeholder="e.g. 2005"
                   autoComplete="bday-year"
                   {...fieldErrorProps("birthYear")}
                   onFocus={() => setFocusedField("birthYear")}

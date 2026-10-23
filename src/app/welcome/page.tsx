@@ -10,15 +10,49 @@ type IntroPhase = "checking" | "opening" | "question" | "exit" | "done";
 const INTRO_KEY = "statquest.welcome.intro.seen.v1";
 
 const struggles = [
-  { heading: "don't know where to start?", label: "I don't know where to start" },
-  { heading: "can't stay consistent?", label: "I keep losing momentum" },
-  { heading: "feel overwhelmed?", label: "There's just too much to do" },
+  {
+    heading: "don't know where to start?",
+    label: "I don't know where to start",
+    mission: {
+      lead: "Make progress",
+      accent: "on Python.",
+      description: "Start with one concrete lesson.",
+      first: "Review lists & loops",
+      next: "Solve one small problem",
+      last: "Reflect on what you learned",
+    },
+  },
+  {
+    heading: "can't stay consistent?",
+    label: "I keep losing momentum",
+    mission: {
+      lead: "Build a habit",
+      accent: "one session at a time.",
+      description: "Pick up where you left off.",
+      first: "Revisit your last notes",
+      next: "Complete a 25-minute focus session",
+      last: "Write down your next step",
+    },
+  },
+  {
+    heading: "feel overwhelmed?",
+    label: "There's just too much to do",
+    mission: {
+      lead: "Focus on",
+      accent: "one priority.",
+      description: "A clear action beats an endless to-do list.",
+      first: "Choose your most useful task",
+      next: "Work on one small section",
+      last: "Plan tomorrow's first step",
+    },
+  },
 ] as const;
 
 export default function WelcomePage() {
   const [phase, setPhase] = useState<IntroPhase>("checking");
   const [struggle, setStruggle] = useState(0);
   const skipRef = useRef<HTMLButtonElement>(null);
+  const currentMission = struggles[struggle].mission;
 
   // Play the short opening only once per browser tab. Never block reduced-motion users.
   useEffect(() => {
@@ -99,19 +133,19 @@ export default function WelcomePage() {
           <section className={styles.hero} aria-labelledby="welcome-heading">
             <div className={styles.heroText}>
               <span className={styles.eyebrow}><span className={styles.eyebrowSpark}>✦</span> SMALL STEPS. REAL PROGRESS.</span>
-              <h1 id="welcome-heading" className={styles.heading}>
+              <h1 id="welcome-heading" className={styles.heading} aria-live="polite">
                 Have goals,<br />
                 but <span className={styles.highlight} key={struggle}>{struggles[struggle].heading}</span>
               </h1>
               <p className={styles.heroLead}>
-                Big goals don&apos;t need a perfect plan. They need a first step.
-                StatQuest turns what you want to achieve into something you can do <strong>today.</strong>
+                You know what you want to learn. Figuring out what to do next is harder.
+                StatQuest turns your goal into a focused mission you can start <strong>today.</strong>
               </p>
               <div className={styles.heroButtons}>
                 <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
                 <a className={styles.secondaryButton} href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a>
               </div>
-              <div className={styles.questions} aria-label="Choose what you are struggling with">
+              <div className={styles.questions} role="group" aria-label="Choose what you are struggling with">
                 <span>Sound familiar?</span>
                 <div className={styles.questionButtons}>
                   {struggles.map((item, index) => (
@@ -129,28 +163,28 @@ export default function WelcomePage() {
               </div>
             </div>
 
-            <div className={styles.previewArea} aria-label="Example of a StatQuest daily mission">
+            <div className={styles.previewArea}>
               <div className={styles.orbitOne} aria-hidden="true" />
               <div className={styles.orbitTwo} aria-hidden="true" />
-              <div className={styles.previewCard}>
+              <article className={styles.previewCard} aria-label="Example of a StatQuest daily mission">
                 <div className={styles.previewTopline}>
                   <span className={styles.demoPill}><span className={styles.greenDot} /> EXAMPLE MISSION</span>
-                  <span className={styles.previewNumber}>01 / 03</span>
+                  <span className={styles.previewNumber}>3 STEPS</span>
                 </div>
                 <p className={styles.previewKicker}>TODAY&apos;S NEXT STEP</p>
-                <h2>Make progress<br /><span>on Python.</span></h2>
-                <p className={styles.previewSub}>A little progress beats a perfect plan.</p>
+                <h2 aria-live="polite">{currentMission.lead}<br /><span>{currentMission.accent}</span></h2>
+                <p className={styles.previewSub}>{currentMission.description}</p>
                 <div className={styles.taskList}>
-                  <div className={styles.taskDone}><span className={styles.taskCheck}>✓</span><span>Review lists &amp; loops</span><small>Done</small></div>
-                  <div className={styles.taskCurrent}><span className={styles.taskIndex}>02</span><span>Solve one small problem</span><small>Next</small></div>
-                  <div className={styles.taskPending}><span className={styles.taskIndex}>03</span><span>Reflect on what you learned</span></div>
+                  <div className={styles.taskDone}><span className={styles.taskCheck} aria-hidden="true">✓</span><span>{currentMission.first}</span><small>Done</small></div>
+                  <div className={styles.taskCurrent}><span className={styles.taskIndex}>02</span><span>{currentMission.next}</span><small>Next</small></div>
+                  <div className={styles.taskPending}><span className={styles.taskIndex}>03</span><span>{currentMission.last}</span></div>
                 </div>
                 <div className={styles.previewProgress}>
                   <div className={styles.progressLabels}><strong>Your progress</strong><span>1 of 3 steps</span></div>
-                  <div className={styles.progressTrack}><span /></div>
+                  <div className={styles.progressTrack} role="progressbar" aria-label="Example mission progress" aria-valuemin={0} aria-valuemax={3} aria-valuenow={1}><span /></div>
                 </div>
-                <div className={styles.previewFooter}><span className={styles.focusIcon}>◷</span><span>Focus on one step</span><strong>25 min</strong></div>
-              </div>
+                <div className={styles.previewFooter}><span className={styles.focusIcon} aria-hidden="true">◷</span><span>Focus on one step</span><strong>25 min</strong></div>
+              </article>
               <div className={styles.floatNote}><span className={styles.noteStar}>✦</span> One step closer.</div>
               <span className={styles.decorStar} aria-hidden="true">✳</span>
             </div>
@@ -158,7 +192,7 @@ export default function WelcomePage() {
 
           <section id="how-it-works" className={styles.howItWorks} aria-labelledby="how-heading">
             <div className={styles.sectionHeading}>
-              <span className={styles.sectionEyebrow}>THE SIMPLE PART</span>
+              <span className={styles.sectionEyebrow}>HOW STATQUEST WORKS</span>
               <h2 id="how-heading">From <em>“someday”</em> to <em>“done today.”</em></h2>
               <p>No complicated system. Just a clearer next step.</p>
             </div>
@@ -173,7 +207,7 @@ export default function WelcomePage() {
             <span className={styles.sectionEyebrow}>YOUR NEXT STEP STARTS HERE</span>
             <h2>You bring the goal.<br /><em>We&apos;ll help with the next step.</em></h2>
             <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
-            <p>Free to get started · No account required · Progress saved on this device</p>
+            <p>No account required · Progress stays in this browser</p>
           </section>
         </main>
 

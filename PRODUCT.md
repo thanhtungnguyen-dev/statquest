@@ -50,7 +50,7 @@ StatQuest's differentiator is its learning-decision loop: it decides what the le
 
 - The repository contains a working Next.js implementation of the local learning loop, profile flows, Focus and Adventure modes, goal references, mission generation, evidence validation, progression, history, review, and migrations.
 - Automated tests cover core business rules, persistence and migrations, accessibility contrast, responsive entry and Focus behavior, reference processing, mission context, and progression invariants.
-- Existing product and release evidence is documented in `README.md`, `CODEX_HANDOFF.md`, `docs/OPTIMIZED_RELEASE.md`, and `docs/PRODUCTION_UPGRADE.md`.
+- Existing product and release evidence is documented in `README.md`, `docs/OPTIMIZED_RELEASE.md`, and `docs/PRODUCTION_UPGRADE.md`.
 - Existing player, companion, and accessory artwork is stored under `public/`.
 - No verified testimonials, customer logos, institutional endorsements, public usage metrics, pricing, or production security claims are currently available and future work must not fabricate them.
 

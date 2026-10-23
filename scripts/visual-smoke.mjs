@@ -77,6 +77,27 @@ try {
     report.push({ page: "focus-dashboard", viewport: name, width, overflow: focusWidth, errors: consoleErrors, issues: focusIssues });
     assert.equal(focusIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Focus accessibility failures on ${name}: ${JSON.stringify(focusIssues)}`);
     assert.equal(consoleErrors.length, 0, `Browser errors during Focus on ${name}: ${consoleErrors.join("; ")}`);
+    // Verify the dashboard additions from the supplied design references.
+    await page.locator(".focus-skill-pulse").waitFor({ state: "visible" });
+    if (name === "mobile") {
+      assert.ok(await page.getByRole("navigation", { name: "Dashboard shortcuts" }).isVisible());
+    }
+    await page.locator(".focus-account-menu > summary").click();
+    await page.getByRole("button", { name: "Adventure mode" }).click();
+    await page.locator("form.adventure-form").waitFor({ state: "visible", timeout: 15_000 });
+    await page.getByRole("button", { name: /Enter the Learning World|Save Hero Changes/ }).click();
+    const questBoard = page.locator('section[aria-label="Adventure study quest board"]');
+    await questBoard.waitFor({ state: "visible", timeout: 30_000 });
+    await page.screenshot({ path: `ui-artifacts/adventure-quest-board-${name}.png`, fullPage: true });
+    const adventureSize = await page.evaluate(() => ({ viewport: window.innerWidth, document: document.documentElement.scrollWidth }));
+    assert.ok(adventureSize.document <= adventureSize.viewport + 3, `Adventure quest board overflows on ${name}: ${JSON.stringify(adventureSize)}`);
+    const adventureAudit = await page.evaluate(async () => {
+      return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
+    });
+    const adventureIssues = adventureAudit.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => ({ targets: n.target, summary: n.failureSummary })) }));
+    report.push({ page: "adventure-quest-board", viewport: name, overflow: adventureSize, errors: consoleErrors, issues: adventureIssues });
+    assert.equal(adventureIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Adventure accessibility failures on ${name}: ${JSON.stringify(adventureIssues)}`);
+    assert.equal(consoleErrors.length, 0, `Browser errors during Adventure on ${name}: ${consoleErrors.join("; ")}`);
     await context.close();
   }
 } finally {

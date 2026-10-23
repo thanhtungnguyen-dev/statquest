@@ -1,0 +1,120 @@
+/* Focus progress overview and touch-friendly dashboard shortcuts.
+   Both reuse existing mission and profile state; no new persistence. */
+.focus-mobile-navigation { display:none; }
+.focus-skill-pulse {
+  display:grid;
+  grid-template-columns:94px minmax(0,1fr);
+  gap:17px;
+  align-items:center;
+  padding:17px;
+  margin:13px 0 17px;
+  min-width:0;
+  border:1px solid color-mix(in srgb,var(--border) 74%, var(--green) 26%);
+  border-radius:18px;
+  background:linear-gradient(132deg,color-mix(in srgb,var(--surface-bright) 90%,var(--green) 10%),var(--surface-soft));
+}
+.focus-skill-pulse-ring {
+  width:92px;height:92px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  box-shadow:0 7px 30px rgba(25,128,144,.12);
+}
+.focus-skill-pulse-ring > div {
+  display:flex; flex-direction:column; align-items:center;justify-content:center;
+  width:74px;height:74px;border-radius:50%;
+  background:var(--surface-bright);
+  text-align:center;
+}
+.focus-skill-pulse-ring strong { font-size:23px;letter-spacing:-.045em;line-height:1;color:var(--text); }
+.focus-skill-pulse-ring small { font-size:11px; margin-top:4px;color:var(--muted);font-weight:750; }
+.focus-skill-pulse-copy { min-width:0; }
+.focus-skill-pulse-copy > span { display:block;margin-bottom:7px;font-size:10px;color:var(--muted);font-weight:850;letter-spacing:.1em; }
+.focus-skill-pulse-copy > strong { display:block;font-size:17px;line-height:1.3;color:var(--text);overflow-wrap:anywhere; }
+.focus-skill-pulse-copy p { margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.55; }
+.focus-panel .compact-progress-grid > div { border-radius:14px; }
+.focus-shell .focus-panel :is(.compact-progress-grid,.focus-weekly-grid) strong { font-variant-numeric:tabular-nums; }
+.focus-shell :is(#focus-goals-title,#focus-missions-title,#focus-progress-title) { scroll-margin-top:90px; }
+@media(max-width:720px) {
+  .focus-mobile-navigation {
+    position:sticky;z-index:18;top:8px;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;
+    padding:6px;
+    margin:9px 0 2px;
+    border:1px solid var(--border);
+    border-radius:16px;
+    background:color-mix(in srgb,var(--surface) 95%,transparent);
+    backdrop-filter:blur(18px);
+    box-shadow:0 7px 23px rgba(0,20,35,.08);
+  }
+  .focus-mobile-navigation a {
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    min-height:44px;min-width:0;padding:8px 5px;border-radius:11px;
+    color:var(--text);font-size:12px;font-weight:800;text-decoration:none;
+    background:var(--surface-soft);border:1px solid transparent;
+  }
+  .focus-mobile-navigation a:hover,.focus-mobile-navigation a:focus-visible {
+    background:var(--surface-bright);border-color:var(--primary);
+  }
+  .focus-mobile-navigation a span { color:var(--success-text);font-size:15px; }
+  .focus-skill-pulse { gap:12px;grid-template-columns:75px minmax(0,1fr);padding:12px; }
+  .focus-skill-pulse-ring { width:74px;height:74px; }
+  .focus-skill-pulse-ring > div { width:58px;height:58px; }
+  .focus-skill-pulse-ring strong { font-size:18px; }
+  .focus-skill-pulse-ring small { font-size:10px; }
+  .focus-skill-pulse-copy > strong { font-size:15px; }
+  .focus-skill-pulse-copy p { font-size:12px; }
+}
+@media(max-width:370px) {
+  .focus-mobile-navigation a { font-size:11px; }
+  .focus-mobile-navigation a span { display:none; }
+}
+
+/* Adventure header mobile layout: prevent four navigation actions from
+   extending beyond the phone viewport. */
+@media(max-width:760px) {
+  .page-shell > .topbar {
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    align-items:stretch;
+    gap:12px;
+    padding:16px 0 12px;
+    max-width:100%;
+    min-width:0;
+  }
+  .page-shell > .topbar .brand {
+    min-width:0;
+    max-width:100%;
+    flex-wrap:wrap;
+    font-size:16px;
+    line-height:1.3;
+  }
+  .page-shell > .topbar .profile-menu {
+    display:grid;
+    width:100%;
+    min-width:0;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+  }
+  .page-shell > .topbar .profile-menu .status-button {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:0;
+    width:100%;
+    min-height:43px;
+    padding:9px 7px;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.3;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    text-align:center;
+  }
+  .page-shell > .hero {
+    grid-template-columns:minmax(0,1fr);
+    gap:16px;
+    padding:25px 0 28px;
+  }
+  .page-shell > .hero > * { min-width:0; }
+}

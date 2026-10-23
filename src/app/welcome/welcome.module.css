@@ -165,3 +165,15 @@
 @media(max-width:850px) { .featureIntro{grid-template-columns:1fr;gap:15px}.featureGrid{grid-template-columns:1fr;gap:12px}.featureCard{padding:23px;min-height:0}.features{padding:70px 0}.navLinks{gap:12px} }
 @media(max-width:580px) { .themeToggle{min-width:63px;padding:8px;font-size:11px}.navLinks{gap:7px}.navLinks .navAction{padding:11px 10px;font-size:11px}.features{padding:58px 0}.featureIntro h2{font-size:34px}.featureIntro>p{font-size:14px}.featureCard h3{font-size:19px}.featureCard p{margin-bottom:16px}.featureGrid{margin-top:25px}.privacyNote{font-size:12px}.heroButtons .primaryButton,.heroButtons .secondaryButton{font-size:13px} }
 @media(max-width:370px) { .navLinks .navAction{font-size:0;padding:12px 10px}.navAction span{font-size:17px;padding:0}.wordmark{font-size:18px}.nav{gap:8px} }
+
+
+/* Chromium/axe-confirmed contrast repairs for small text in dark mode. */
+.taskDone small,.taskCurrent small { font-size:12px; }
+.taskIndex { color:#313a78; font-size:12px; }
+.featureTag { font-size:12px; }
+:global(html[data-theme="dark"]) .taskDone small { color:#83e8c6; }
+:global(html[data-theme="dark"]) .taskCurrent small { color:#d8e1ff; }
+:global(html[data-theme="dark"]) .previewFooter strong { color:#c8d2ff; }
+:global(html[data-theme="dark"]) .stepNumber { color:#b8c3df; }
+:global(html[data-theme="dark"]) .featureTag { color:#b9c5f4; }
+:global(html[data-theme="dark"]) .eyebrow, :global(html[data-theme="dark"]) .sectionEyebrow { color:#bbc6ff; }

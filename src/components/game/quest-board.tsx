@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { DailyMission, LearningGoal } from "@/lib/types";
 import styles from "./quest-board.module.css";
 
@@ -17,7 +18,7 @@ type QuestBoardProps = {
   missions: DailyMission[];
   featuredMission: DailyMission | null;
   weekly: WeeklyActivity;
-  onOpenFocus: () => void;
+  onOpenFocus: (missionId?: string) => void;
 };
 
 function displayWeek(date: string): string {
@@ -31,14 +32,20 @@ function clampMastery(value: number): number {
 }
 
 export function QuestBoard({ goals, missions, featuredMission, weekly, onOpenFocus }: QuestBoardProps) {
-  const active = (featuredMission?.status === "active" ? featuredMission : null)
-    ?? missions.find((mission) => mission.status === "active") ?? null;
+
+  const [selectedMissionId, setSelectedMissionId] = useState("");
+  const activeMissions = missions.filter((mission) => mission.status === "active");
+  const selectedActive = activeMissions.find((mission) => mission.id === selectedMissionId) ?? null;
+  const firstActive = (featuredMission?.status === "active" ? featuredMission : null)
+    ?? activeMissions[0] ?? null;
   const latestCompleted = missions
     .filter((mission) => mission.status === "completed")
     .sort((a, b) => (b.completedAt ?? "").localeCompare(a.completedAt ?? ""))[0] ?? null;
-  const current = active ?? latestCompleted;
+  const current = selectedActive ?? firstActive ?? latestCompleted;
   const steps = current?.steps ?? [];
   const doneSteps = steps.filter((step) => step.completed).length;
+  const completion = steps.length ? Math.round(doneSteps / steps.length * 100) : 0;
+  const nextStep = steps.find((step) => !step.completed) ?? null;
   const skills = goals
     .flatMap((goal) => goal.learningTopics.map((topic) => ({
       id: topic.id,
@@ -74,6 +81,21 @@ export function QuestBoard({ goals, missions, featuredMission, weekly, onOpenFoc
 
           {current ? (
             <>
+              {activeMissions.length > 1 && (
+                <div className={styles.missionTabs} role="group" aria-label="Choose an active quest">
+                  {activeMissions.map((mission) => (
+                    <button
+                      type="button"
+                      key={mission.id}
+                      className={current.id === mission.id ? styles.missionTabSelected : styles.missionTab}
+                      aria-pressed={current.id === mission.id}
+                      onClick={() => setSelectedMissionId(mission.id)}
+                    >
+                      {mission.subject}
+                    </button>
+                  ))}
+                </div>
+              )}
               <div className={styles.missionHighlight}>
                 <span className={styles.missionSymbol} aria-hidden="true">✦</span>
                 <div>
@@ -83,6 +105,13 @@ export function QuestBoard({ goals, missions, featuredMission, weekly, onOpenFoc
                 </div>
                 <span className={styles.xp}>{current.xpAwarded ? "Completed" : `${current.xp} XP`}</span>
               </div>
+              {steps.length > 0 && (
+                <div className={styles.questProgress}>
+                  <div className={styles.progressCopy}><span>MISSION PROGRESS</span><strong>{completion}% complete</strong></div>
+                  <progress max={steps.length} value={doneSteps} aria-label="Completed mission steps" />
+                  {nextStep && <p><strong>Next:</strong> {nextStep.title}</p>}
+                </div>
+              )}
               <ol className={styles.questPath} aria-label="Actual mission steps">
                 {steps.map((step, index) => (
                   <li className={step.completed ? styles.stepComplete : styles.stepPending} key={step.id}>
@@ -94,8 +123,8 @@ export function QuestBoard({ goals, missions, featuredMission, weekly, onOpenFoc
                   </li>
                 ))}
               </ol>
-              <button className={styles.primaryAction} type="button" onClick={onOpenFocus}>
-                {current.status === "active" ? "Continue in Focus" : "Plan your next mission"}
+              <button className={styles.primaryAction} type="button" onClick={() => onOpenFocus(current.status === "active" ? current.id : undefined)}>
+                {current.status === "active" ? "Continue this mission" : "Plan your next mission"}
                 <span aria-hidden="true">↗</span>
               </button>
             </>
@@ -106,7 +135,7 @@ export function QuestBoard({ goals, missions, featuredMission, weekly, onOpenFoc
               <p>{goals.length
                 ? "You have a learning goal. Generate a mission in Focus to get a clear sequence of study steps."
                 : "Add a learning goal in Focus, then generate your first mission. Your actual completed steps will appear here."}</p>
-              <button className={styles.primaryAction} type="button" onClick={onOpenFocus}>
+              <button className={styles.primaryAction} type="button" onClick={() => onOpenFocus()}>
                 {goals.length ? "Generate a mission" : "Create your first goal"}
                 <span aria-hidden="true">↗</span>
               </button>

@@ -19,7 +19,11 @@ test("Adventure quest board uses real missions, learning topics and weekly activ
   assert.match(QUEST, /weekly\.uniqueStudyDays/);
   assert.match(QUEST, /goal\.learningTopics/);
   assert.match(QUEST, /aria-valuenow=\{skill\.mastery\}/);
-  assert.match(QUEST, /onClick=\{onOpenFocus\}/);
+  assert.ok(QUEST.includes('onClick={() => onOpenFocus(current.status === "active" ? current.id : undefined)}'));
+  assert.match(QUEST, /Choose an active quest/);
+  assert.ok(QUEST.includes("setSelectedMissionId(mission.id)"));
+  assert.match(QUEST, /Completed mission steps/);
+  assert.ok(PAGE.includes("setSelectedMissionId(missionId)"));
 });
 
 test("Quest map and Focus use responsive layouts and keyboard-accessible controls", () => {

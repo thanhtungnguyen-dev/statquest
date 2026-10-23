@@ -924,7 +924,7 @@ export default function Home() {
           <StatQuestLogo />
           <span className="entry-brand-copy">
             <strong>StatQuest</strong>
-            <small>Focused learning</small>
+            
           </span>
         </button>
         {renderThemeToggle()}
@@ -952,7 +952,7 @@ export default function Home() {
               <StatQuestLogo />
               <div>
                 <span>STATQUEST</span>
-                <h2 id="about-statquest-title">Focused daily learning progress</h2>
+                <h2 id="about-statquest-title">Your goal, one step at a time</h2>
               </div>
             </div>
             <button
@@ -965,7 +965,7 @@ export default function Home() {
               ×
             </button>
           </div>
-          <p>Turn learning goals into focused daily progress.</p>
+          <p>Choose a goal, work on a mission, and review what you learned.</p>
           <ol className="entry-about-flow" aria-label="How StatQuest works">
             {["Goal", "Mission", "Focus", "Feedback", "Review"].map((stage, index) => (
               <li key={stage}>
@@ -1833,7 +1833,7 @@ export default function Home() {
           <div className="entry-profile-layout">
             <section className="entry-orientation" aria-labelledby="entry-value-title">
               <p className="eyebrow">{editing ? "PROFILE SETTINGS" : "NEW PROFILE"}</p>
-              <h1 id="entry-value-title">Turn learning goals into focused daily progress.</h1>
+              <h1 id="entry-value-title">Make a plan for what matters next.</h1>
               <p className="hero-copy">
                 <span className="entry-promise-desktop">
                   StatQuest helps you choose what to study next, focus on one step
@@ -2167,8 +2167,8 @@ export default function Home() {
               ) : (
                 <>
                   <p className="eyebrow">FOCUS IS READY</p>
-                  <h2>Choose your next learning goal.</h2>
-                  <p>No unfinished mission or review is waiting.</p>
+                  <h2>What would you like to work on next?</h2>
+                  <p>You&apos;re caught up. Choose a goal to continue.</p>
                   <button className="primary-button entry-primary-action" type="button" onClick={() => continueLocalSession("focus")}>
                     Open Focus
                   </button>
@@ -2266,7 +2266,7 @@ export default function Home() {
                 </div>
               </details>
             </div>
-            <p className="entry-storage-note">Stored on this device.</p>
+            <p className="entry-storage-note">Saved in this browser.</p>
           </div>
         </section>
         {renderEntryAbout()}

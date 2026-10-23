@@ -2034,7 +2034,7 @@ footer strong { color: var(--text); }
 
 .focus-progress-item strong { color: var(--text); font-size: 15px; line-height: 1; }
 .focus-progress-item small,
-.focus-stat-kicker { color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.focus-stat-kicker { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .focus-level-item { justify-content: center; }
 .focus-level-item small { max-width: 46px; overflow: hidden; text-overflow: ellipsis; }
 .focus-xp-item > span:nth-child(2),
@@ -2106,7 +2106,7 @@ footer strong { color: var(--text); }
 .focus-account-popover button:focus-visible { background: color-mix(in srgb, var(--primary) 13%, transparent); }
 
 .focus-streak-item { width: 100%; cursor: pointer; }
-.focus-streak-popover { display: grid; gap: 5px; font-size: 10px; }
+.focus-streak-popover { display: grid; gap: 5px; font-size: 12px; }
 .focus-streak-popover span { color: var(--muted); }
 .streak-flame { width: 23px; height: 29px; overflow: visible; filter: drop-shadow(0 2px 5px rgba(236, 119, 48, .24)); }
 .streak-flame-outer { fill: #9aa5b6; transform-origin: center bottom; animation: streak-flame-breathe 2.8s ease-in-out infinite; }
@@ -2385,7 +2385,7 @@ footer strong { color: var(--text); }
 .recommended-mission > div > span { color: var(--success-text); font-size: 8px; font-weight: 900; letter-spacing: .09em; }
 .recommended-mission strong { color: var(--text); font-size: 13px; }
 .recommended-mission small,
-.recommended-mission li { color: var(--muted); font-size: 9px; line-height: 1.4; }
+.recommended-mission li { color: var(--muted); font-size: 11px; line-height: 1.4; }
 .recommended-mission ul { display: flex; flex-wrap: wrap; gap: 3px 14px; margin: 2px 0 0; padding-left: 14px; }
 .recommended-mission button { min-height: 36px; padding: 7px 11px; font-size: 11px; }
 
@@ -2439,7 +2439,7 @@ footer strong { color: var(--text); }
 }
 
 .mission-estimate strong { color: var(--reward-text); font-size: 12px; }
-.mission-estimate small { max-width: 180px; color: var(--muted); font-size: 9px; line-height: 1.35; text-align: right; }
+.mission-estimate small { max-width: 180px; color: var(--muted); font-size: 11px; line-height: 1.35; text-align: right; }
 
 .mission-reasons,
 .old-mission-actions,
@@ -2454,7 +2454,7 @@ footer strong { color: var(--text); }
 .mission-reasons { display: grid; gap: 4px; margin-top: 11px; padding: 9px 11px; }
 .mission-reasons > strong { color: var(--text); font-size: 10px; }
 .mission-reasons ul { display: flex; flex-wrap: wrap; gap: 3px 18px; margin: 0; padding-left: 15px; }
-.mission-reasons li { color: var(--muted); font-size: 10px; line-height: 1.4; }
+.mission-reasons li { color: var(--muted); font-size: 12px; line-height: 1.4; }
 
 .old-mission-actions {
   display: grid;
@@ -2485,7 +2485,7 @@ footer strong { color: var(--text); }
 .mission-adjustments { margin-top: 10px; padding: 9px 10px; }
 .mission-adjustments summary { color: var(--text); font-size: 10px; font-weight: 800; cursor: pointer; }
 .mission-adjustments .button-row { margin-top: 8px; }
-.mission-adjustments small { display: block; margin-top: 7px; color: var(--muted); font-size: 9px; line-height: 1.4; }
+.mission-adjustments small { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.4; }
 
 .mission-support-grid {
   display: grid;
@@ -2571,8 +2571,8 @@ footer strong { color: var(--text); }
 .focus-session-heading span { color: var(--green); font-size: 9px; font-weight: 850; letter-spacing: .1em; }
 .focus-session-heading small { max-width: 145px; color: var(--muted); font-size: 9px; text-align: right; }
 .focus-session-setup { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.focus-session-setup label { display: grid; gap: 4px; font-size: 10px; }
-.focus-session-setup select { min-width: 0; padding: 7px 8px; font-size: 10px; }
+.focus-session-setup label { display: grid; gap: 4px; font-size: 12px; }
+.focus-session-setup select { min-width: 0; padding: 7px 8px; font-size: 12px; }
 .focus-session-setup button { grid-column: 1 / -1; min-height: 34px; padding: 6px 9px; font-size: 11px; }
 
 .focus-shell .focus-session-setup .focus-start-button {
@@ -2648,14 +2648,14 @@ footer strong { color: var(--text); }
 .mission-feedback-panel > div { display: grid; gap: 2px; }
 .mission-feedback-panel > div > span { color: var(--success-text); font-size: 8px; font-weight: 900; letter-spacing: .08em; }
 .mission-feedback-panel > div > strong { color: var(--text); font-size: 12px; }
-.mission-feedback-panel small { color: var(--muted); font-size: 9px; line-height: 1.35; }
-.mission-feedback-panel label { display: grid; gap: 4px; color: var(--text); font-size: 10px; font-weight: 700; }
-.mission-feedback-panel select { min-width: 0; padding: 7px; font-size: 10px; }
+.mission-feedback-panel small { color: var(--muted); font-size: 12px; line-height: 1.35; }
+.mission-feedback-panel label { display: grid; gap: 4px; color: var(--text); font-size: 12px; font-weight: 700; }
+.mission-feedback-panel select { min-width: 0; padding: 7px; font-size: 12px; }
 .mission-feedback-panel fieldset { display: grid; gap: 5px; margin: 0; padding: 8px; border: 1px solid var(--border); border-radius: 9px; }
-.mission-feedback-panel legend { padding: 0 4px; color: var(--text); font-size: 9px; font-weight: 750; }
-.mission-feedback-panel fieldset label { display: flex; flex-direction: row; gap: 6px; align-items: center; color: var(--muted); font-size: 9px; }
+.mission-feedback-panel legend { padding: 0 4px; color: var(--text); font-size: 12px; font-weight: 750; }
+.mission-feedback-panel fieldset label { display: flex; flex-direction: row; gap: 6px; align-items: center; color: var(--muted); font-size: 12px; }
 .mission-feedback-panel fieldset input { width: 13px; height: 13px; }
-.mission-feedback-panel button { min-height: 34px; padding: 6px 9px; font-size: 10px; }
+.mission-feedback-panel button { min-height: 40px; padding: 6px 9px; font-size: 12px; }
 
 .focus-shell:has(.focus-room) { overflow: visible; }
 .focus-room {
@@ -2728,7 +2728,7 @@ footer strong { color: var(--text); }
   backdrop-filter: blur(15px) saturate(110%);
   text-align: center;
 }
-.focus-room-status { margin: 0 0 10px; color: #68dfb4; font-size: 10px; font-weight: 900; letter-spacing: .19em; }
+.focus-room-status { margin: 0 0 10px; color: #68dfb4; font-size: 12px; font-weight: 900; letter-spacing: .19em; }
 .focus-room-primary h1 { max-width: 620px; margin: 0; color: #f4f7fc; font-size: clamp(22px, 3vw, 36px); line-height: 1.1; letter-spacing: -.035em; }
 .focus-room-countdown {
   margin: clamp(18px, 4vh, 30px) 0 8px;
@@ -2740,18 +2740,18 @@ footer strong { color: var(--text); }
   letter-spacing: -.065em;
   text-shadow: 0 12px 42px rgba(95, 117, 238, .22);
 }
-.focus-room-progress-copy { display: flex; width: min(430px, 100%); justify-content: space-between; color: #afbdd1; font-size: 9px; font-weight: 750; }
+.focus-room-progress-copy { display: flex; width: min(430px, 100%); justify-content: space-between; color: #afbdd1; font-size: 11px; font-weight: 750; }
 .focus-room-progress { width: min(430px, 100%); height: 4px; margin: 7px 0 20px; overflow: hidden; border: 0; border-radius: 99px; background: rgba(131, 151, 181, .2); }
 .focus-room-progress::-webkit-progress-bar { border-radius: inherit; background: rgba(131, 151, 181, .2); }
 .focus-room-progress::-webkit-progress-value { border-radius: inherit; background: linear-gradient(90deg, #6875f5, #39d69d); transition: width 500ms linear; }
 .focus-room-progress::-moz-progress-bar { border-radius: inherit; background: linear-gradient(90deg, #6875f5, #39d69d); }
 .focus-room-task { display: grid; width: min(480px, 100%); gap: 5px; padding: 13px 15px; border: 1px solid rgba(143, 162, 195, .2); border-radius: 14px; background: rgba(6, 14, 25, .28); }
-.focus-room-task span { color: #9eacc0; font-size: 9px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+.focus-room-task span { color: #9eacc0; font-size: 11px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
 .focus-room-task strong { color: #ecf2fa; font-size: 13px; line-height: 1.4; }
 .focus-room-actions { display: flex; gap: 8px; justify-content: center; margin-top: 18px; }
 .focus-room-actions button { min-width: 130px; }
 .focus-room-reward-note,
-.focus-room-break-note { margin-top: 9px; color: #99a9bf; font-size: 9px; }
+.focus-room-break-note { margin-top: 9px; color: #99a9bf; font-size: 11px; }
 
 .focus-room-guardian {
   grid-area: guardian;
@@ -2762,8 +2762,8 @@ footer strong { color: var(--text); }
 }
 .focus-room-guardian .quest-character { margin: 0 auto; }
 .focus-guardian-dialogue { display: grid; width: 100%; gap: 3px; padding: 10px; border: 1px solid rgba(142, 164, 199, .23); border-radius: 12px; background: rgba(11, 22, 38, .62); text-align: center; }
-.focus-guardian-dialogue span { color: #68dfb4; font-size: 8px; font-weight: 900; letter-spacing: .1em; }
-.focus-guardian-dialogue strong { color: #edf3fb; font-size: 10px; line-height: 1.35; }
+.focus-guardian-dialogue span { color: #68dfb4; font-size: 11px; font-weight: 900; letter-spacing: .1em; }
+.focus-guardian-dialogue strong { color: #edf3fb; font-size: 12px; line-height: 1.35; }
 
 .focus-room-audio {
   grid-area: audio;
@@ -2778,18 +2778,18 @@ footer strong { color: var(--text); }
   backdrop-filter: blur(12px);
 }
 .focus-room-audio > div:first-child { display: grid; gap: 2px; }
-.focus-room-audio > div:first-child span { color: #9ba9ff; font-size: 8px; font-weight: 900; letter-spacing: .11em; }
+.focus-room-audio > div:first-child span { color: #9ba9ff; font-size: 11px; font-weight: 900; letter-spacing: .11em; }
 .focus-room-audio > div:first-child strong { color: #edf3fb; font-size: 13px; }
-.focus-room-audio label { display: grid; gap: 4px; color: #bdc8d8; font-size: 9px; }
+.focus-room-audio label { display: grid; gap: 4px; color: #bdc8d8; font-size: 12px; }
 .focus-room-audio select,
-.focus-room-audio input { min-width: 0; padding: 8px; font-size: 10px; }
+.focus-room-audio input { min-width: 0; padding: 8px; font-size: 12px; }
 .focus-room-audio form { display: grid; gap: 6px; }
 .focus-audio-input-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px; }
-.focus-audio-input-row button { min-height: 34px; padding: 6px 9px; font-size: 9px; }
-.focus-room-audio .form-error { margin: 0; font-size: 9px; }
+.focus-audio-input-row button { min-height: 40px; padding: 6px 9px; font-size: 12px; }
+.focus-room-audio .form-error { margin: 0; font-size: 12px; }
 .focus-youtube-player { display: grid; gap: 7px; }
 .focus-youtube-player iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; background: #05080d; }
-.focus-youtube-player button { min-height: 32px; padding: 5px 8px; font-size: 9px; }
+.focus-youtube-player button { min-height: 32px; padding: 5px 8px; font-size: 12px; }
 .focus-room.is-break .focus-room-status { color: #78c9ff; }
 .focus-room.is-break .focus-room-progress::-webkit-progress-value { background: linear-gradient(90deg, #6375e8, #55b8ed); }
 .focus-room.is-break .focus-room-progress::-moz-progress-bar { background: linear-gradient(90deg, #6375e8, #55b8ed); }
@@ -2843,7 +2843,7 @@ footer strong { color: var(--text); }
   box-shadow: 0 20px 48px rgba(0, 0, 0, .38), inset 0 1px rgba(255, 255, 255, .08);
 }
 .floating-study-timer.is-dragging .floating-timer-grip { cursor: grabbing; opacity: .72; }
-.floating-study-timer .floating-timer-label { color: #9ba9ff; font-size: 9px; font-weight: 900; letter-spacing: .12em; }
+.floating-study-timer .floating-timer-label { color: #9ba9ff; font-size: 11px; font-weight: 900; letter-spacing: .12em; }
 .floating-study-timer > strong { overflow: hidden; color: #f4f7ff; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 .floating-study-timer time { grid-row: 1 / 3; grid-column: 2; align-self: center; color: #b9c4ff; font-size: 25px; font-variant-numeric: tabular-nums; font-weight: 900; letter-spacing: -.03em; }
 .floating-study-timer small { grid-column: 1 / -1; color: #b7c2d5; font-size: 10px; }
@@ -2929,7 +2929,7 @@ footer strong { color: var(--text); }
   .focus-progress-item { min-height: 38px; padding: 4px 7px; }
   .focus-account-menu > summary { max-width: 118px; min-height: 34px; }
   .focus-account-menu > summary span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .focus-top-actions .theme-toggle button { min-height: 28px; padding: 4px 7px; font-size: 9px; }
+  .focus-top-actions .theme-toggle button { min-height: 34px; padding: 4px 7px; font-size: 11px; }
   .focus-dashboard { display: grid; grid-template-columns: 1fr; gap: 8px; padding-top: 8px; }
   .focus-progress-panel { grid-column: auto; }
   .focus-panel { min-height: auto; overflow: visible; border-radius: 16px; }

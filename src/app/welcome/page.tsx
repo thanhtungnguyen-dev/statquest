@@ -93,9 +93,9 @@ export default function WelcomePage() {
 
   useEffect(() => {
     const next: Partial<Record<IntroPhase, [IntroPhase, number]>> = {
-      opening: ["question", 600],
-      question: ["exit", 650],
-      exit: ["done", 350],
+      opening: ["question", 1300],
+      question: ["exit", 1400],
+      exit: ["done", 700],
     };
     const transition = next[phase];
     if (!transition) return;
@@ -282,7 +282,7 @@ export default function WelcomePage() {
             <button ref={skipRef} type="button" onClick={() => setPhase("done")} className={styles.skipIntro}>Skip intro <span aria-hidden="true">↗</span></button>
           </div>
           <div className={styles.introCenter} aria-live="polite">
-            {phase === "opening" ? <h2>Have goals,<br /><em>but...</em></h2> : <h2>Where do you<br /><em>start?</em></h2>}
+            {phase === "opening" ? <h2 key="opening">Have goals,<br /><em>but...</em></h2> : <h2 key="question">Where do you<br /><em>start?</em></h2>}
           </div>
           <div className={styles.introBottom}>GOAL <span>✦</span> MISSION <span>✦</span> FOCUS</div>
         </div>

@@ -61,6 +61,22 @@ try {
     assert.equal(appIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Application accessibility failures on ${name}: ${JSON.stringify(appIssues)}`);
     assert.ok(appWidth.document <= appWidth.viewport + 3, `App overflows on ${name}: ${JSON.stringify(appWidth)}`);
     assert.equal(consoleErrors.length, 0, `Browser errors on ${name}: ${consoleErrors.join("; ")}`);
+    // Complete the real first-run path with no birth year and test the Focus dashboard.
+    await page.getByLabel("Display name").fill("Avery");
+    await page.getByLabel("Current learning stage").selectOption("college");
+    await page.getByLabel("Career, job, or field you want to study").fill("Computer science");
+    await page.getByRole("button", { name: "Continue with Focus" }).click();
+    await page.locator("#focus-dashboard").waitFor({ state: "visible", timeout: 20_000 });
+    await page.screenshot({ path: `ui-artifacts/focus-dashboard-${name}.png`, fullPage: true });
+    const focusWidth = await page.evaluate(() => ({ viewport: window.innerWidth, document: document.documentElement.scrollWidth }));
+    assert.ok(focusWidth.document <= focusWidth.viewport + 3, `Focus dashboard overflows on ${name}: ${JSON.stringify(focusWidth)}`);
+    const focusAudit = await page.evaluate(async () => {
+      return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
+    });
+    const focusIssues = focusAudit.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => ({ targets: n.target, summary: n.failureSummary })) }));
+    report.push({ page: "focus-dashboard", viewport: name, width, overflow: focusWidth, errors: consoleErrors, issues: focusIssues });
+    assert.equal(focusIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Focus accessibility failures on ${name}: ${JSON.stringify(focusIssues)}`);
+    assert.equal(consoleErrors.length, 0, `Browser errors during Focus on ${name}: ${consoleErrors.join("; ")}`);
     await context.close();
   }
 } finally {

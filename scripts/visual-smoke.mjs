@@ -85,7 +85,7 @@ try {
     await page.locator(".focus-account-menu > summary").click();
     await page.getByRole("button", { name: "Adventure mode" }).click();
     await page.locator("form.adventure-form").waitFor({ state: "visible", timeout: 15_000 });
-    await page.getByRole("button", { name: "Enter the Learning World" }).click();
+    await page.getByRole("button", { name: /Enter the Learning World|Save Hero Changes/ }).click();
     const questBoard = page.locator('section[aria-label="Adventure study quest board"]');
     await questBoard.waitFor({ state: "visible", timeout: 30_000 });
     await page.screenshot({ path: `ui-artifacts/adventure-quest-board-${name}.png`, fullPage: true });

@@ -37,10 +37,10 @@ try {
     const audit = await page.evaluate(async () => {
       return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
     });
-    const issues = audit.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description, nodes: v.nodes.length }));
+    const issues = audit.violations.map((v) => ({ id: v.id, impact: v.impact, description: v.description, nodes: v.nodes.map((n) => ({ targets: n.target, html: n.html.slice(0, 280), summary: n.failureSummary })) }));
     report.push({ page: "landing-dark", viewport: name, width, overflow: initialWidth, issues });
-    const critical = issues.filter((v) => v.impact === "critical");
-    assert.equal(critical.length, 0, `Critical accessibility issue on ${name}: ${JSON.stringify(critical)}`);
+    const serious = issues.filter((v) => ["serious", "critical"].includes(v.impact));
+    assert.equal(serious.length, 0, `Serious accessibility issue on ${name}: ${JSON.stringify(serious)}`);
     const app = await page.goto(`${ORIGIN}/app`, { waitUntil: "domcontentloaded", timeout: 30_000 });
     assert.equal(app?.status(), 200, `App must return HTTP 200 on ${name}`);
     await page.locator("main").first().waitFor({ state: "visible", timeout: 20_000 });

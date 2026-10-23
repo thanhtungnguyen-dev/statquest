@@ -24,13 +24,14 @@ test("profile validation reports a specific accessible message for every field",
 
   assert.match(errors.hero ?? "", /Choose the adventurer/i);
   assert.match(errors.displayName ?? "", /what should.*call you/i);
-  assert.match(errors.birthYear ?? "", /four-digit year/i);
+  assert.equal(errors.birthYear, undefined);
   assert.match(errors.learningStage ?? "", /learning level/i);
   assert.match(errors.careerInterest ?? "", /career path/i);
   assert.equal(firstProfileError(errors), "hero");
 });
 
-test("birth year must be four digits and age-appropriate", () => {
+test("birth year is optional, but validated when provided", () => {
+  assert.equal(validateProfileDraft({ ...VALID_DRAFT, birthYear: "" }, 2026).birthYear, undefined);
   assert.match(
     validateProfileDraft({ ...VALID_DRAFT, birthYear: "99" }, 2026).birthYear ?? "",
     /four-digit/i,

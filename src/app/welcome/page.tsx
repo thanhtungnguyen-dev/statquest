@@ -51,10 +51,30 @@ const struggles = [
 export default function WelcomePage() {
   const [phase, setPhase] = useState<IntroPhase>("checking");
   const [struggle, setStruggle] = useState(0);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const skipRef = useRef<HTMLButtonElement>(null);
   const startRef = useRef<HTMLAnchorElement>(null);
   const introPresentedRef = useRef(false);
   const currentMission = struggles[struggle].mission;
+
+  // Read the theme already used by the learning application.
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    setTheme(next);
+    try {
+      localStorage.setItem("statquest.theme.v1", next);
+    } catch {
+      // The current page can still switch themes without storage.
+    }
+  };
 
   // Play a short optional intro once per browser, not once per tab.
   useEffect(() => {
@@ -132,6 +152,7 @@ export default function WelcomePage() {
           </Link>
           <nav className={styles.navLinks} aria-label="Primary navigation">
             <a href="#how-it-works">How it works</a>
+            <button type="button" className={styles.themeToggle} onClick={toggleTheme} aria-label={theme === "dark" ? "Use light appearance" : "Use dark appearance"} aria-pressed={theme === "dark"}>{theme === "dark" ? "Light" : "Dark"} mode</button>
             <Link className={styles.navAction} href="/app">Open StatQuest <span aria-hidden="true">↗</span></Link>
           </nav>
         </header>
@@ -199,26 +220,57 @@ export default function WelcomePage() {
           <section id="how-it-works" className={styles.howItWorks} aria-labelledby="how-heading">
             <div className={styles.sectionHeading}>
               <span className={styles.sectionEyebrow}>HOW STATQUEST WORKS</span>
-              <h2 id="how-heading">From <em>“someday”</em> to <em>“done today.”</em></h2>
-              <p>No complicated system. Just a clearer next step.</p>
+              <h2 id="how-heading">A plan for <em>your next study session.</em></h2>
+              <p>Turn your goal into focused work you can finish.</p>
             </div>
             <div className={styles.steps}>
               <article className={styles.step}><span className={styles.stepNumber}>01</span><div className={styles.stepIcon}>◎</div><h3>Set a goal</h3><p>Tell StatQuest what you want to learn or achieve.</p></article>
-              <article className={styles.step}><span className={styles.stepNumber}>02</span><div className={styles.stepIcon}>▤</div><h3>Get daily missions</h3><p>Break your bigger goal into actionable study steps.</p></article>
-              <article className={styles.step}><span className={styles.stepNumber}>03</span><div className={styles.stepIcon}>↗</div><h3>Focus. Track. Repeat.</h3><p>Stay on track with focus sessions and visible progress.</p></article>
+              <article className={styles.step}><span className={styles.stepNumber}>02</span><div className={styles.stepIcon}>▤</div><h3>Get daily missions</h3><p>Get specific tasks based on your goal and study progress.</p></article>
+              <article className={styles.step}><span className={styles.stepNumber}>03</span><div className={styles.stepIcon}>↗</div><h3>Focus. Track. Repeat.</h3><p>Use a focus timer, record work, and see what to review next.</p></article>
             </div>
+          </section>
+
+          <section id="features" className={styles.features} aria-labelledby="features-heading">
+            <div className={styles.featureIntro}>
+              <div>
+                <span className={styles.sectionEyebrow}>BUILT FOR REAL STUDY</span>
+                <h2 id="features-heading">More than a to-do list.</h2>
+              </div>
+              <p>Planning matters when it leads to learning. StatQuest helps you do the work, not just organize it.</p>
+            </div>
+            <div className={styles.featureGrid}>
+              <article className={styles.featureCard}>
+                <span className={styles.featureIcon} aria-hidden="true">◷</span>
+                <h3>Make time to focus</h3>
+                <p>Work through one mission with a focus timer. Stop rearranging the plan and start studying.</p>
+                <span className={styles.featureTag}>FOCUS SESSIONS</span>
+              </article>
+              <article className={styles.featureCard}>
+                <span className={styles.featureIcon} aria-hidden="true">↺</span>
+                <h3>Know what to revisit</h3>
+                <p>See completed work, track progress, and return to topics that need another pass.</p>
+                <span className={styles.featureTag}>PROGRESS &amp; REVIEW</span>
+              </article>
+              <article className={styles.featureCard}>
+                <span className={styles.featureIcon} aria-hidden="true">◇</span>
+                <h3>Learn your way</h3>
+                <p>Use a clear Focus workspace or optional Adventure view. Both share the same progress.</p>
+                <span className={styles.featureTag}>TWO VIEWS, ONE PROFILE</span>
+              </article>
+            </div>
+            <p className={styles.privacyNote}><strong>Your study progress stays in this browser.</strong> No account is required. Clearing browser data can erase saved progress.</p>
           </section>
 
           <section className={styles.closing}>
             <span className={styles.sectionEyebrow}>YOUR NEXT STEP STARTS HERE</span>
-            <h2>Ready to study?<br /><em>Start with one clear step.</em></h2>
+            <h2>Less time planning.<br /><em>More time learning.</em></h2>
             <Link className={styles.primaryButton} href="/app">Start your quest <span aria-hidden="true">↗</span></Link>
-            <p>No account required · Progress stays in this browser</p>
+            <p>No sign-up required · Saved locally in your browser</p>
           </section>
         </main>
 
         <footer className={styles.footer}>
-          <span>© {new Date().getFullYear()} StatQuest. Make the next step count.</span>
+          <span>© {new Date().getFullYear()} StatQuest · Made for learners who want to make progress.</span>
           <button type="button" className={styles.replay} onClick={replayIntro}>↺ Replay intro</button>
         </footer>
       </div>

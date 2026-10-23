@@ -1,0 +1,110 @@
+/* Visual quality layer for StatQuest's learning workspace.
+   Applied after globals.css so older component styles remain stable. */
+:root {
+  --sq-readable-xs: 12px;
+  --sq-readable-sm: 14px;
+  --sq-touch-target: 44px;
+}
+:where(.focus-shell,.onboarding-shell,.adventurer-screen,.focus-room) :is(button,a,input,select,textarea,summary):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+.focus-shell .focus-panel small,
+.focus-shell .focus-panel label,
+.focus-shell .focus-panel .recommended-mission li,
+.focus-shell .focus-panel .mission-reasons li,
+.focus-shell .focus-panel .mission-study-actions span,
+.focus-shell .focus-panel .old-mission-actions span,
+.focus-shell .focus-panel .focus-session-heading span,
+.focus-shell .focus-panel .focus-session-heading small,
+.focus-shell .focus-panel .focus-weekly-analytics > small,
+.focus-shell .focus-panel .mission-feedback-panel > div > span {
+  font-size: var(--sq-readable-xs);
+  line-height: 1.5;
+}
+.focus-shell .focus-progress-item small,
+.focus-shell .focus-stat-kicker,
+.focus-shell .focus-progress-item .focus-stat-kicker {
+  font-size: var(--sq-readable-xs);
+  line-height: 1.4;
+}
+.focus-shell .focus-panel :is(button,select,input:not([type="checkbox"]):not([type="radio"]),textarea) {
+  font-size: var(--sq-readable-sm);
+  min-height: 42px;
+}
+.focus-shell .focus-panel :is(button,select,input,textarea) { touch-action: manipulation; }
+.focus-shell .focus-panel input:is([type="checkbox"],[type="radio"]) { min-height: 18px; min-width: 18px; }
+.focus-shell .focus-panel h2,
+.focus-shell .focus-panel h3 { line-height: 1.25; text-wrap: balance; }
+.focus-shell .focus-panel p,
+.focus-shell .focus-panel li { overflow-wrap: anywhere; }
+.focus-shell .focus-panel { border-radius: 20px; }
+.focus-shell .focus-panel .field-hint,
+.focus-shell .focus-panel .form-error,
+.focus-shell .focus-panel .focus-count { font-size: var(--sq-readable-xs); line-height: 1.5; }
+.focus-room .focus-room-status,
+.focus-room .focus-room-progress-copy,
+.focus-room .focus-room-reward-note,
+.focus-room .focus-guardian-dialogue,
+.focus-room .focus-room-audio label,
+.focus-room .focus-room-audio small { font-size: var(--sq-readable-xs); line-height: 1.5; }
+.focus-room :is(button,select,input:not([type="checkbox"]):not([type="radio"])) { min-height: 44px; font-size: 14px; }
+.onboarding-shell :is(label,.field-error),
+.adventurer-screen :is(label,.semantic-field-error) { font-size: 14px; line-height: 1.5; }
+.onboarding-shell :is(input,select,textarea),
+.adventurer-screen :is(input:not([type="radio"]):not([type="checkbox"]),select,textarea) { min-height: 44px; font-size: 15px; }
+.onboarding-shell :is(button,summary),
+.adventurer-screen :is(button,summary) { min-height: 42px; }
+@media(max-width:900px) {
+  .focus-shell .focus-dashboard { gap: 14px; }
+  .focus-shell .focus-panel { padding: clamp(14px,3vw,22px); }
+}
+@media(max-width:580px) {
+  .focus-shell .focus-panel :is(button,select,input:not([type="checkbox"]):not([type="radio"]),textarea) {
+    font-size: 16px;
+    min-height: var(--sq-touch-target);
+  }
+  .onboarding-shell :is(input,select,textarea),
+  .adventurer-screen :is(input:not([type="radio"]):not([type="checkbox"]),select,textarea) { font-size: 16px; }
+  .focus-shell .focus-topbar button { min-height: 40px; }
+  .focus-shell .focus-panel small,
+  .focus-shell .focus-progress-item small { font-size: 12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .focus-shell *,
+  .focus-shell *::before,
+  .focus-shell *::after,
+  .onboarding-shell *,
+  .adventurer-screen *,
+  .focus-room * {
+    scroll-behavior: auto;
+    animation-duration: .01ms;
+    animation-iteration-count: 1;
+    transition-duration: .01ms;
+  }
+}
+
+/* Give the learner room to work on laptop/desktop viewports. */
+@media(min-width:1240px) {
+  .focus-shell .focus-dashboard {
+    grid-template-columns:minmax(340px,27fr) minmax(400px,46fr) minmax(330px,27fr);
+    gap:14px;
+  }
+  .focus-shell .compact-field-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .focus-shell .focus-top-stats { grid-template-columns:repeat(3,minmax(120px,150px)); }
+  .focus-shell .focus-level-item small { display:none; }
+}
+@media(min-width:1101px) and (min-height:740px) {
+  .focus-shell .mission-detail-scroll:has(.focus-empty) {
+    display:grid;
+    place-items:center;
+    min-height:440px;
+  }
+  .focus-shell .focus-empty {
+    width:min(100%,560px);
+    padding:clamp(24px,3vw,38px);
+  }
+  .focus-shell .focus-empty h3 { font-size:clamp(22px,2.4vw,29px); }
+  .focus-shell .focus-empty p { max-width:460px; line-height:1.65; }
+}
+.focus-shell .focus-empty-action { margin-top:18px; min-height:44px; padding:10px 18px; font-size:14px; }

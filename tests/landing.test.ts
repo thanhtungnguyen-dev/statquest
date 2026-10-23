@@ -23,6 +23,6 @@ test("landing preview is explicitly illustrative and its progress is accessible"
 
 test("landing offers keyboard focus and accurately describes browser-only storage", () => {
   assert.match(CSS, /\.landing a:focus-visible,\.landing button:focus-visible/);
-  assert.match(PAGE, /Progress stays in this browser/);
+  assert.match(PAGE, /Your study progress stays in this browser/);
   assert.doesNotMatch(PAGE, /Progress saved on this device/);
 });

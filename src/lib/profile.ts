@@ -63,10 +63,13 @@ export function validateProfileDraft(
     errors.displayName = "What should your fellow adventurers call you?";
   }
   if (
-    !/^\d{4}$/.test(draft.birthYear.trim()) ||
-    !Number.isInteger(birthYear) ||
-    age < 8 ||
-    age > 100
+    draft.birthYear.trim() !== "" &&
+    (
+      !/^\d{4}$/.test(draft.birthYear.trim()) ||
+      !Number.isInteger(birthYear) ||
+      age < 8 ||
+      age > 100
+    )
   ) {
     errors.birthYear =
       "That birth year doesn’t look quite right. Try a valid four-digit year.";

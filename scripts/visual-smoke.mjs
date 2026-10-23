@@ -77,6 +77,22 @@ try {
     report.push({ page: "focus-dashboard", viewport: name, width, overflow: focusWidth, errors: consoleErrors, issues: focusIssues });
     assert.equal(focusIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Focus accessibility failures on ${name}: ${JSON.stringify(focusIssues)}`);
     assert.equal(consoleErrors.length, 0, `Browser errors during Focus on ${name}: ${consoleErrors.join("; ")}`);
+    // Create two real missions before opening Adventure. Verify populated paths,
+    // subject selection, and handoff back to the same mission in Focus.
+    for (const [index, subject, outcome] of [
+      [0, "JavaScript", "Build and explain a small JavaScript function"],
+      [1, "Discrete Math", "Solve counting and set problems independently"],
+    ]) {
+      if (index > 0) await page.getByRole("button", { name: /Add Goal/i }).click();
+      await page.locator('form.compact-goal-form input[name="subject"]').fill(subject);
+      await page.locator('form.compact-goal-form textarea[name="desiredOutcome"]').fill(outcome);
+      await page.getByRole("button", { name: "Add active goal" }).click();
+      const goalItem = page.locator(".compact-goal-item").filter({ hasText: subject });
+      await goalItem.waitFor({ state: "visible" });
+      await goalItem.getByRole("button", { name: "Generate", exact: true }).click();
+      await page.locator(".mission-selector button").filter({ hasText: subject }).waitFor({ state: "visible" });
+    }
+    await page.screenshot({ path: `ui-artifacts/focus-populated-${name}.png`, fullPage: true });
     // Verify the dashboard additions from the supplied design references.
     await page.locator(".focus-skill-pulse").waitFor({ state: "visible" });
     if (name === "mobile") {
@@ -88,6 +104,14 @@ try {
     await page.getByRole("button", { name: /Enter the Learning World|Save Hero Changes/ }).click();
     const questBoard = page.locator('section[aria-label="Adventure study quest board"]');
     await questBoard.waitFor({ state: "visible", timeout: 30_000 });
+    const pathSteps = questBoard.getByRole("list", { name: "Actual mission steps" }).locator("li");
+    assert.ok(await pathSteps.count() >= 1, `Generated mission steps missing on ${name}`);
+    const tabs = questBoard.getByRole("group", { name: "Choose an active quest" });
+    assert.equal(await tabs.getByRole("button").count(), 2, "Both active quests should be selectable");
+    await tabs.getByRole("button", { name: "Discrete Math" }).click();
+    assert.equal(await tabs.getByRole("button", { name: "Discrete Math" }).getAttribute("aria-pressed"), "true");
+    assert.ok(await questBoard.getByRole("heading", { name: "Your next quest" }).isVisible());
+    assert.ok(await questBoard.getByRole("progressbar", { name: "Completed mission steps" }).count() === 1);
     await page.screenshot({ path: `ui-artifacts/adventure-quest-board-${name}.png`, fullPage: true });
     const adventureSize = await page.evaluate(() => ({ viewport: window.innerWidth, document: document.documentElement.scrollWidth }));
     assert.ok(adventureSize.document <= adventureSize.viewport + 3, `Adventure quest board overflows on ${name}: ${JSON.stringify(adventureSize)}`);
@@ -98,6 +122,10 @@ try {
     report.push({ page: "adventure-quest-board", viewport: name, overflow: adventureSize, errors: consoleErrors, issues: adventureIssues });
     assert.equal(adventureIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Adventure accessibility failures on ${name}: ${JSON.stringify(adventureIssues)}`);
     assert.equal(consoleErrors.length, 0, `Browser errors during Adventure on ${name}: ${consoleErrors.join("; ")}`);
+    await questBoard.getByRole("button", { name: "Continue this mission" }).click();
+    await page.locator("#focus-dashboard").waitFor({ state: "visible", timeout: 20_000 });
+    const selectedFocusMission = page.locator(".mission-selector button").filter({ hasText: "Discrete Math" });
+    assert.equal(await selectedFocusMission.getAttribute("aria-pressed"), "true", "Returning to Focus must open the chosen quest");
     await context.close();
   }
 } finally {

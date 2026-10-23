@@ -58,3 +58,24 @@
 @media(max-width:960px) { .layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr;grid-template-rows:auto;align-items:start}.pathPanel{min-height:0} }
 @media(max-width:650px) { .board{border-radius:18px;padding:13px;margin:15px 0 25px}.weekHeader{padding:8px 5px 18px;align-items:flex-start}.weekNote{display:none}.pathPanel,.statsPanel,.skillsPanel{border-radius:16px;padding:18px}.side{grid-template-columns:1fr}.panelHeading{align-items:flex-start}.pathCount{white-space:normal;text-align:right}.missionHighlight{gap:10px;flex-wrap:wrap}.xp{margin-left:56px}.startState{min-height:260px;padding:12px 3px}.statGrid{gap:7px}.stat{padding:11px 8px}.stat strong{font-size:25px}.skillGrid{gap:9px}.skillRing{width:74px;height:74px} }
 @media(prefers-reduced-motion:reduce) { .board *{scroll-behavior:auto;transition:none} }
+
+/* Progress through several real missions without leaving Adventure. */
+.missionTabs { display:flex;flex-wrap:wrap;gap:8px;margin-top:21px; }
+.missionTab,.missionTabSelected {
+  min-height:42px;max-width:100%;padding:9px 13px;border:1px solid #496476;border-radius:11px;
+  background:#1c3040;color:#c6d9e8;font-size:12px;font-weight:750;
+  overflow-wrap:anywhere;text-align:left;cursor:pointer;
+}
+.missionTab:hover { border-color:#8be0d1;background:#244053; }
+.missionTabSelected { background:#294d50;border-color:#76e5c7;color:#f0fff9; }
+.missionTab:focus-visible,.missionTabSelected:focus-visible { outline:3px solid #e7efff;outline-offset:2px; }
+.questProgress { margin-top:19px;padding:17px 17px 14px;border:1px solid #325168;border-radius:15px;background:rgba(20,37,54,.85); }
+.progressCopy { display:flex;align-items:center;justify-content:space-between;gap:12px; }
+.progressCopy span { color:#a6c4d7;font-weight:800;letter-spacing:.09em;font-size:11px; }
+.progressCopy strong { color:#a5f0d9;font-size:12px; }
+.questProgress progress { display:block;width:100%;height:10px;margin:11px 0;appearance:none;border:0;border-radius:99px;background:#2c4051;overflow:hidden; }
+.questProgress progress::-webkit-progress-bar { background:#2c4051;border-radius:99px; }
+.questProgress progress::-webkit-progress-value { background:#67e2c3;border-radius:99px; }
+.questProgress progress::-moz-progress-bar { background:#67e2c3;border-radius:99px; }
+.questProgress p { margin:9px 0 0;color:#c6d8e6;font-size:12px;line-height:1.6;overflow-wrap:anywhere; }
+.questProgress p strong { color:#f0f7ff; }

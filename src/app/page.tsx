@@ -2367,7 +2367,13 @@ export default function Home() {
           missions={appState.missions}
           featuredMission={todayMission}
           weekly={thisWeek}
-          onOpenFocus={() => changeMode("focus")}
+          onOpenFocus={(missionId) => {
+            if (missionId) {
+              setSelectedMissionId(missionId);
+              setEvidenceError("");
+            }
+            changeMode("focus");
+          }}
         />
       </main>
     );

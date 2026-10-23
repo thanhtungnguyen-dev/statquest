@@ -30,10 +30,16 @@ try {
     }));
     assert.ok(initialWidth.document <= initialWidth.viewport + 3, `Landing overflows on ${name}: ${JSON.stringify(initialWidth)}`);
     await page.screenshot({ path: `ui-artifacts/landing-light-${name}.png`, fullPage: true });
+    await page.addScriptTag({ content: axe.source });
+    const lightAudit = await page.evaluate(async () => {
+      return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
+    });
+    const lightIssues = lightAudit.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => ({ targets: n.target, summary: n.failureSummary })) }));
+    report.push({ page: "landing-light", viewport: name, issues: lightIssues });
+    assert.equal(lightIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Light accessibility failures on ${name}: ${JSON.stringify(lightIssues)}`);
     await page.getByRole("button", { name: "Use dark appearance" }).click();
     await page.waitForFunction(() => document.documentElement.getAttribute("data-theme") === "dark");
     await page.screenshot({ path: `ui-artifacts/landing-dark-${name}.png`, fullPage: true });
-    await page.addScriptTag({ content: axe.source });
     const audit = await page.evaluate(async () => {
       return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
     });
@@ -46,7 +52,13 @@ try {
     await page.locator("main").first().waitFor({ state: "visible", timeout: 20_000 });
     await page.screenshot({ path: `ui-artifacts/app-onboarding-${name}.png`, fullPage: true });
     const appWidth = await page.evaluate(() => ({ viewport: window.innerWidth, document: document.documentElement.scrollWidth }));
-    report.push({ page: "app", viewport: name, width, overflow: appWidth, errors: consoleErrors });
+    await page.addScriptTag({ content: axe.source });
+    const appAudit = await page.evaluate(async () => {
+      return await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } });
+    });
+    const appIssues = appAudit.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.map((n) => ({ targets: n.target, summary: n.failureSummary })) }));
+    report.push({ page: "app", viewport: name, width, overflow: appWidth, errors: consoleErrors, issues: appIssues });
+    assert.equal(appIssues.filter((v) => ["serious", "critical"].includes(v.impact)).length, 0, `Application accessibility failures on ${name}: ${JSON.stringify(appIssues)}`);
     assert.ok(appWidth.document <= appWidth.viewport + 3, `App overflows on ${name}: ${JSON.stringify(appWidth)}`);
     assert.equal(consoleErrors.length, 0, `Browser errors on ${name}: ${consoleErrors.join("; ")}`);
     await context.close();

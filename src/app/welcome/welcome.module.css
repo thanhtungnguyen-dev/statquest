@@ -19,7 +19,7 @@
 .navAction span { padding-left:8px; font-size:16px; }
 .hero { min-height:670px; display:grid; grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr); align-items:center; gap:clamp(20px,4vw,64px); padding:75px 0 75px; }
 .heroText { position:relative; z-index:2; padding:20px 0; }
-.eyebrow,.sectionEyebrow { display:inline-flex; align-items:center; gap:9px; font-size:10px; font-weight:900; letter-spacing:.20em; color:#6470d6; }
+.eyebrow,.sectionEyebrow { display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:900; letter-spacing:.20em; color:#6470d6; }
 .eyebrowSpark { font-size:19px; color:#23ba91; letter-spacing:0; }
 .heading { margin:22px 0 22px !important; max-width:790px; font-weight:870; font-size:clamp(51px,5.4vw,79px); line-height:1.055; letter-spacing:-.075em; color:#242945 !important; }
 .highlight { display:inline; color:#5965eb; background:linear-gradient(115deg,#505de3,#8470e9); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:wordReveal .28s ease both; }
@@ -44,10 +44,10 @@
 .orbitTwo { height:600px; width:600px; border:1px solid rgba(87,103,218,.10); transform:rotate(-20deg); }
 .previewCard { position:relative; width:min(100%,420px); padding:30px; border:1px solid #e0e5f7; border-radius:25px; background:rgba(255,255,255,.96); box-shadow:0 40px 100px rgba(45,56,124,.13),0 3px 14px rgba(73,82,150,.04); transform:rotate(-2deg); animation:floatSoft 7s ease-in-out infinite; }
 .previewTopline { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.demoPill { display:inline-flex; align-items:center; gap:7px; padding:8px 10px; border-radius:50px; background:#e8f9f2; color:#13765e; font-size:10px; font-weight:900; letter-spacing:.045em; }
+.demoPill { display:inline-flex; align-items:center; gap:7px; padding:8px 10px; border-radius:50px; background:#e8f9f2; color:#13765e; font-size:11px; font-weight:900; letter-spacing:.045em; }
 .greenDot { width:7px; height:7px; border-radius:50%; background:#23c490; }
-.previewNumber { font-size:11px; font-weight:800; color:#606b83; }
-.previewKicker { margin:26px 0 9px !important; font-size:10px; letter-spacing:.18em; font-weight:900; color:#596681; }
+.previewNumber { font-size:12px; font-weight:800; color:#606b83; }
+.previewKicker { margin:26px 0 9px !important; font-size:11px; letter-spacing:.18em; font-weight:900; color:#596681; }
 .previewCard h2 { font-size:clamp(30px,3.4vw,41px); font-weight:840; line-height:1.12; letter-spacing:-.055em; color:#232945; }
 .previewCard h2 span { color:#5a66df; }
 .previewSub { margin:11px 0 26px !important; font-size:12px; color:#53617c; }
@@ -64,7 +64,7 @@
 .taskCheck { background:#daf5e9; color:#15956e; font-size:15px; }
 .taskIndex { background:#e4e7fa; color:#6b73b5; }
 .previewProgress { margin-top:23px; }
-.progressLabels { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:11px; }
+.progressLabels { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12px; }
 .progressLabels strong { color:#505b7b; }
 .progressLabels span { color:#556480; }
 .progressTrack { height:7px; margin-top:12px; background:#ecf0f8; border-radius:20px; overflow:hidden; }
@@ -90,7 +90,7 @@
 .closing { position:relative; overflow:hidden; text-align:center; padding:77px 22px 68px; margin-bottom:62px; border:1px solid #dfe5ff; border-radius:32px; background:linear-gradient(140deg,#e9edff,#f5f6ff 50%,#e9f8f3); }
 .closing:after { content:"✳"; position:absolute; right:10%; top:13%; color:#efbf65; font-size:50px; opacity:.5; }
 .closing h2 { margin:14px 0 27px; font-size:clamp(37px,4.8vw,56px); letter-spacing:-.064em; font-weight:850; line-height:1.11; }
-.closing>p { margin:21px 0 0; color:#5b647c; font-size:11px; }
+.closing>p { margin:21px 0 0; color:#5b647c; font-size:12px; }
 .footer { display:flex; gap:15px; justify-content:space-between; align-items:center; padding:24px 0 40px; border-top:1px solid #e3e7f3; font-size:12px; color:#5b667f; }
 .replay { border:0; padding:8px 10px; background:transparent; color:#6875b7; font-size:12px; font-weight:750; cursor:pointer; }
 .replay:hover { color:#4e5fe7; }
@@ -109,7 +109,7 @@
 .introCenter h2 { font-size:clamp(62px,11vw,142px); line-height:1.01; letter-spacing:-.083em; font-weight:900; animation:introIn .55s cubic-bezier(.22,.8,.2,1) both; }
 .introCenter h2 em { color:#5a65e9; font-style:normal; }
 .intro[data-phase="question"] .introCenter h2 { font-size:clamp(55px,10vw,124px); }
-.introBottom { position:absolute; bottom:31px; left:22px; right:22px; text-align:center; font-size:10px; font-weight:850; letter-spacing:.15em; color:#60647d; }
+.introBottom { position:absolute; bottom:31px; left:22px; right:22px; text-align:center; font-size:11px; font-weight:850; letter-spacing:.15em; color:#60647d; }
 .introBottom span { margin:0 12px; color:#44ca9e; }
 .intro[data-phase="exit"] { animation:introExit .58s cubic-bezier(.74,0,.19,.98) both; pointer-events:none; }
 .intro[data-phase="exit"] .introCenter { opacity:0; }
@@ -119,5 +119,5 @@
 @keyframes wordReveal { from {opacity:.3;transform:translateY(6px)} to {opacity:1;transform:translateY(0)} }
 @media(max-width:1050px) { .hero{gap:24px}.heading{font-size:clamp(48px,5.3vw,70px)}.previewCard{padding:23px}.orbitOne{width:400px;height:400px}.orbitTwo{width:475px;height:475px}.floatNote{right:0;bottom:6%} }
 @media(max-width:840px) { .nav{height:79px}.hero{grid-template-columns:1fr;gap:10px;padding:56px 0 68px;min-height:auto}.heroText{text-align:center;padding:0}.heading{margin:20px auto !important;max-width:730px;font-size:clamp(48px,8vw,70px)}.heroLead{margin:auto;max-width:650px}.heroButtons,.questionButtons{justify-content:center}.questions{margin-top:27px}.previewArea{min-height:560px;margin-top:8px}.previewCard{width:min(440px,83%)}.floatNote{right:8%;bottom:5%}.howItWorks{padding:74px 0 80px}.steps{gap:12px}.step{padding:24px 18px}.closing{padding:58px 22px 55px} }
-@media(max-width:580px) { .pageContent{padding-inline:20px}.navLinks{gap:10px}.navLinks a:first-child{display:none}.navLinks .navAction{padding:11px 13px;font-size:12px}.wordmark{font-size:19px}.wordmark img{width:35px;height:35px}.hero{padding:50px 0 57px}.eyebrow{font-size:9px;letter-spacing:.16em}.heading{font-size:clamp(45px,10.4vw,66px);letter-spacing:-.07em}.heroLead{font-size:14px;line-height:1.7}.heroButtons{margin-top:24px;gap:10px}.primaryButton,.secondaryButton{min-height:47px;padding:12px 16px;font-size:12px}.questions{margin-top:27px}.questionChip{font-size:12px;min-height:40px}.previewArea{min-height:455px;margin-top:22px}.previewCard{width:min(100%,350px);padding:20px;transform:rotate(-1deg);animation:none}.previewCard h2{font-size:30px}.previewKicker{margin-top:19px!important}.taskDone,.taskCurrent,.taskPending{font-size:11px;padding:11px}.orbitOne{width:345px;height:345px}.orbitTwo{width:440px;height:440px}.floatNote{right:0;bottom:0;font-size:10px;padding:11px}.decorStar{right:4%;font-size:32px}.howItWorks{padding:62px 0}.sectionHeading h2{font-size:36px}.steps{grid-template-columns:1fr;gap:12px;margin-top:32px}.step{padding:23px 25px;display:grid;grid-template-columns:55px 1fr;gap:0 16px}.stepIcon{grid-row:1/3;width:48px;height:48px}.stepNumber{top:14px;right:17px}.step h3{margin:1px 0 3px;font-size:19px}.step p{font-size:13px}.closing{border-radius:22px;margin-bottom:35px;padding:56px 18px}.closing h2{font-size:37px}.footer{font-size:12px}.introTop{top:19px}.introCenter h2{font-size:clamp(59px,13vw,80px)}.intro[data-phase="question"] .introCenter h2{font-size:clamp(53px,12vw,74px)}.introBottom{font-size:8px;line-height:1.8} }
+@media(max-width:580px) { .pageContent{padding-inline:20px}.navLinks{gap:10px}.navLinks a:first-child{display:none}.navLinks .navAction{padding:11px 13px;font-size:12px}.wordmark{font-size:19px}.wordmark img{width:35px;height:35px}.hero{padding:50px 0 57px}.eyebrow{font-size:9px;letter-spacing:.16em}.heading{font-size:clamp(45px,10.4vw,66px);letter-spacing:-.07em}.heroLead{font-size:14px;line-height:1.7}.heroButtons{margin-top:24px;gap:10px}.primaryButton,.secondaryButton{min-height:47px;padding:12px 16px;font-size:12px}.questions{margin-top:27px}.questionChip{font-size:12px;min-height:40px}.previewArea{min-height:455px;margin-top:22px}.previewCard{width:min(100%,350px);padding:20px;transform:rotate(-1deg);animation:none}.previewCard h2{font-size:30px}.previewKicker{margin-top:19px!important}.taskDone,.taskCurrent,.taskPending{font-size:11px;padding:11px}.orbitOne{width:345px;height:345px}.orbitTwo{width:440px;height:440px}.floatNote{right:0;bottom:0;font-size:10px;padding:11px}.decorStar{right:4%;font-size:32px}.howItWorks{padding:62px 0}.sectionHeading h2{font-size:36px}.steps{grid-template-columns:1fr;gap:12px;margin-top:32px}.step{padding:23px 25px;display:grid;grid-template-columns:55px 1fr;gap:0 16px}.stepIcon{grid-row:1/3;width:48px;height:48px}.stepNumber{top:14px;right:17px}.step h3{margin:1px 0 3px;font-size:19px}.step p{font-size:13px}.closing{border-radius:22px;margin-bottom:35px;padding:56px 18px}.closing h2{font-size:37px}.footer{font-size:12px}.introTop{top:19px}.introCenter h2{font-size:clamp(59px,13vw,80px)}.intro[data-phase="question"] .introCenter h2{font-size:clamp(53px,12vw,74px)}.introBottom{font-size:10px;line-height:1.8} }
 @media(prefers-reduced-motion:reduce) { .landing *, .landing *::before, .landing *::after{animation:none;transition:none;scroll-behavior:auto} }
